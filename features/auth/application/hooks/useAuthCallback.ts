@@ -13,24 +13,22 @@ export function useAuthCallback() {
   useEffect(() => {
     const token = searchParams.get("token");
 
-    if (!token) {
-      setAuthState({ status: "UNAUTHENTICATED" });
-      router.replace("/login");
-      return;
-    }
+    if (!token) return;
 
     fetchAuthMe(token)
       .then((meResponse) => {
-        if (meResponse.tokenType === "TEMPORARY") {
-          setAuthState({ status: "TEMPORARY_TOKEN", token });
+        if (!meResponse.is_registered) {
+          setAuthState({ status: "TEMPORARY_TOKEN" });
           const params = new URLSearchParams({
-            token,
-            nickname: meResponse.user.nickname,
-            email: meResponse.user.email,
+            nickname: meResponse.nickname,
+            email: meResponse.email,
           });
           router.replace(`/terms?${params.toString()}`);
         } else {
-          setAuthState({ status: "AUTHENTICATED", user: meResponse.user });
+          setAuthState({
+            status: "AUTHENTICATED",
+            user: { id: meResponse.email, email: meResponse.email, nickname: meResponse.nickname },
+          });
           router.replace("/");
         }
       })

@@ -16,12 +16,13 @@ export function redirectOAuthLogin(provider: OAuthProvider): void {
   window.location.href = env.apiBaseUrl + getProviderPath(provider);
 }
 
-export async function fetchAuthMe(token: string): Promise<AuthMeResponse> {
-  const response = await fetch(`${env.apiBaseUrl}/authentication/me`, {
+export async function fetchAuthMe(token?: string): Promise<AuthMeResponse> {
+  const url = token
+    ? `${env.apiBaseUrl}/authentication/me?token=${token}`
+    : `${env.apiBaseUrl}/authentication/me`;
+
+  const response = await fetch(url, {
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
     credentials: "include",
   });
 

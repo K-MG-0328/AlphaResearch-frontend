@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export function useTermsAccess() {
+export function useSignupAccess() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
