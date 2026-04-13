@@ -41,11 +41,6 @@ export default function Navbar({ isAuthenticated = false, onLogout }: NavbarProp
               {item.label}
             </Link>
           ))}
-          {isAuthenticated && (
-            <Link href="/news/saved" className={menuItemStyle("/news/saved")}>
-              저장된 기사
-            </Link>
-          )}
           {isAuthenticated ? (
             <button onClick={onLogout} className={navbarStyles.authButton.logout}>
               Logout

@@ -2,7 +2,7 @@ import { env } from "@/infrastructure/config/env";
 
 function getAuthHeaders(): Record<string, string> {
   if (typeof window === "undefined") return {};
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("user_token");
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
