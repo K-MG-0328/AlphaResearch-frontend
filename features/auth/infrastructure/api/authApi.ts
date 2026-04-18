@@ -19,7 +19,7 @@ export function redirectOAuthLogin(provider: OAuthProvider): void {
 export async function fetchAuthMe(): Promise<AuthMeResponse> {
   const response = await fetch(`${env.apiBaseUrl}/authentication/me`, {
     method: "GET",
-    credentials: "include", // HttpOnly 쿠키 자동 전송
+    credentials: "include",
   });
 
   if (!response.ok) {

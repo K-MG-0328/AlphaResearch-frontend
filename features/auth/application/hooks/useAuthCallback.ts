@@ -13,7 +13,6 @@ export function useAuthCallback() {
   const setAuth = useSetAtom(authAtom);
 
   useEffect(() => {
-    // 쿠키는 백엔드 리다이렉트 시 이미 설정됨 — 별도 토큰 처리 불필요
     fetchAuthMe()
       .then((meResponse) => {
         if (!meResponse.is_registered) {

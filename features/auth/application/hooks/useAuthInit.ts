@@ -9,7 +9,6 @@ export function useAuthInit() {
   const setAuth = useSetAtom(authAtom);
 
   useEffect(() => {
-    // localStorage 대신 쿠키 기반 인증 — fetchAuthMe가 쿠키를 자동으로 전송
     fetchAuthMe()
       .then((meResponse) => {
         if (meResponse.is_registered) {
