@@ -585,6 +585,21 @@ Domain Isolation
 
 ---
 
+## Git 워크플로우
+
+코드 변경 시 main에 직접 푸시하지 말고 항상 PR 워크플로우를 사용한다.
+
+1. `passgiant` fork에 작업 브랜치 생성
+2. 코드 변경 + 브랜치에 푸시
+3. `passgiant/branch` → `EDDI-RobotAcademy/main` 으로 PR 생성
+4. PR 승인 (APPROVE)
+5. 머지
+
+- origin: `passgiant/antelligen-*` (fork)
+- upstream: `EDDI-RobotAcademy/antelligen-*` (원본)
+
+---
+
 # Claude Code Working Guidelines
 
 Claude가 이 프로젝트에서 작업할 때 반드시 지켜야 할 규칙
