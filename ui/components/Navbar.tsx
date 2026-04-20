@@ -12,6 +12,7 @@ const menuItems = [
   { label: "저장된 기사", href: "/news/saved", requiresAuth: true },
   { label: "종목 분석", href: "/stock-recommendation" },
   { label: "주식 Q&A", href: "/stock" },
+  { label: "히스토리", href: "/dashboard" },
 ];
 
 interface NavbarProps {
