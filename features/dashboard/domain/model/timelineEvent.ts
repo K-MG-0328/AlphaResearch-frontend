@@ -1,4 +1,4 @@
-export type TimelineCategory = "PRICE" | "CORPORATE" | "ANNOUNCEMENT" | "NEWS" | "MACRO";
+export type TimelineCategory = "CORPORATE" | "ANNOUNCEMENT" | "MACRO";
 
 export interface HypothesisResult {
   hypothesis: string;
