@@ -82,12 +82,13 @@ function MetaRow({ label, value }: { label: string; value: React.ReactNode }) {
 }
 
 function ProfileBody({ profile }: { profile: CompanyProfile }) {
-  const isEquity = profile.asset_type === "EQUITY";
+  const assetType: AssetType = profile.asset_type ?? "EQUITY";
+  const isEquity = assetType === "EQUITY";
   const isUS = profile.corp_cls === "US";
   const showMeta = isEquity && !isUS;
   const homepageUrl = normalizeUrl(profile.hm_url);
   const irUrl = normalizeUrl(profile.ir_url);
-  const badge = ASSET_BADGE[profile.asset_type];
+  const badge = ASSET_BADGE[assetType] ?? ASSET_BADGE.EQUITY;
   const subtitle =
     profile.corp_name_eng ?? profile.stock_code ?? profile.corp_code;
 
