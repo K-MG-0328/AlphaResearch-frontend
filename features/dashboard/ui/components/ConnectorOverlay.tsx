@@ -5,7 +5,7 @@ import { useAtomValue } from "jotai";
 import { selectedTimelineEventAtom } from "@/features/dashboard/application/atoms/timelineAtom";
 import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/selectedBarAtom";
 import { chartApiAtom, chartContainerAtom } from "@/features/dashboard/application/atoms/chartApiAtom";
-import { periodAtom } from "@/features/dashboard/application/atoms/periodAtom";
+import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
 import type { Time } from "lightweight-charts";
 
 interface Line {
@@ -27,7 +27,7 @@ export default function ConnectorOverlay({ wrapperRef }: ConnectorOverlayProps) 
   const selectedBarTime = useAtomValue(selectedBarTimeAtom);
   const chartApi = useAtomValue(chartApiAtom);
   const chartContainer = useAtomValue(chartContainerAtom);
-  const period = useAtomValue(periodAtom);
+  const chartInterval = useAtomValue(chartIntervalAtom);
 
   const recalculate = useCallback(() => {
     if (!selectedTimelineEvent || !selectedBarTime || !chartApi || !chartContainer || !wrapperRef.current) {
@@ -98,7 +98,7 @@ export default function ConnectorOverlay({ wrapperRef }: ConnectorOverlayProps) 
       cancelAnimationFrame(raf2);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTimelineEvent, selectedBarTime, chartApi, period]);
+  }, [selectedTimelineEvent, selectedBarTime, chartApi, chartInterval]);
 
   // 차트 줌/패닝 시 좌표 재계산
   useEffect(() => {
@@ -126,7 +126,7 @@ export default function ConnectorOverlay({ wrapperRef }: ConnectorOverlayProps) 
 
     return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTimelineEvent, selectedBarTime, chartApi, period]);
+  }, [selectedTimelineEvent, selectedBarTime, chartApi, chartInterval]);
 
   if (!line) return null;
 

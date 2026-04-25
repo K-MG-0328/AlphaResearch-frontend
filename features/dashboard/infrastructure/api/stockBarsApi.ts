@@ -1,7 +1,7 @@
 import { httpClient } from "@/infrastructure/http/httpClient";
 import type { ApiResponse } from "@/infrastructure/http/apiResponse";
 import type { NasdaqBar } from "@/features/dashboard/domain/model/nasdaqBar";
-import type { Period } from "@/features/dashboard/domain/model/period";
+import type { ChartInterval } from "@/features/dashboard/domain/model/chartInterval";
 
 interface StockBarRaw {
   bar_date: string;
@@ -25,7 +25,7 @@ export interface StockBarsResult {
   bars: NasdaqBar[];
 }
 
-export async function fetchStockBars(ticker: string, chartInterval: Period): Promise<StockBarsResult> {
+export async function fetchStockBars(ticker: string, chartInterval: ChartInterval): Promise<StockBarsResult> {
   const res = await httpClient<ApiResponse<StockBarsApiData>>(
     `/api/v1/dashboard/stocks/${encodeURIComponent(ticker)}/bars?chartInterval=${chartInterval}`
   );

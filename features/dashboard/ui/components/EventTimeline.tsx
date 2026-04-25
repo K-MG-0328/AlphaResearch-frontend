@@ -5,7 +5,7 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { economicEventAtom, selectedEventAtom } from "@/features/dashboard/application/atoms/economicEventAtom";
 import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/selectedBarAtom";
 import { nasdaqAtom } from "@/features/dashboard/application/atoms/nasdaqAtom";
-import { periodAtom } from "@/features/dashboard/application/atoms/periodAtom";
+import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
 import { useEconomicEvents } from "@/features/dashboard/application/hooks/useEconomicEvents";
 import { selectedTimelineEventAtom } from "@/features/dashboard/application/atoms/timelineAtom";
 import EventTimelineItem from "@/features/dashboard/ui/components/EventTimelineItem";
@@ -37,7 +37,7 @@ export default function EventTimeline() {
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const period = useAtomValue(periodAtom);
+  const chartInterval = useAtomValue(chartIntervalAtom);
   const eventState = useAtomValue(economicEventAtom);
   const nasdaqState = useAtomValue(nasdaqAtom);
   const [selectedEvent, setSelectedEvent] = useAtom(selectedEventAtom);

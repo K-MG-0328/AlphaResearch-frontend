@@ -1,16 +1,16 @@
-import type { Period } from "@/features/dashboard/domain/model/period";
+import type { ChartInterval } from "@/features/dashboard/domain/model/chartInterval";
 
-const PERIODS: Period[] = ["1D", "1W", "1M", "1Y"];
+const INTERVALS: ChartInterval[] = ["1D", "1W", "1M", "1Y"];
 
-interface PeriodTabsProps {
-  selected: Period;
-  onChange: (period: Period) => void;
+interface ChartIntervalTabsProps {
+  selected: ChartInterval;
+  onChange: (chartInterval: ChartInterval) => void;
 }
 
-export default function PeriodTabs({ selected, onChange }: PeriodTabsProps) {
+export default function ChartIntervalTabs({ selected, onChange }: ChartIntervalTabsProps) {
   return (
     <div className="flex gap-1 rounded-lg bg-zinc-100 p-1 dark:bg-zinc-800">
-      {PERIODS.map((p) => (
+      {INTERVALS.map((p) => (
         <button
           key={p}
           type="button"

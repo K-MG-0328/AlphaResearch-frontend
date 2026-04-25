@@ -19,7 +19,7 @@ import { economicEventAtom, selectedEventAtom } from "@/features/dashboard/appli
 import { timelineAtom, selectedTimelineEventAtom } from "@/features/dashboard/application/atoms/timelineAtom";
 import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/selectedBarAtom";
 import { selectedAnomalyBarAtom } from "@/features/dashboard/application/atoms/selectedAnomalyBarAtom";
-import { periodAtom } from "@/features/dashboard/application/atoms/periodAtom";
+import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
 import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
 import { companyNameAtom } from "@/features/dashboard/application/atoms/companyNameAtom";
 import { chartApiAtom, chartContainerAtom } from "@/features/dashboard/application/atoms/chartApiAtom";
@@ -28,7 +28,7 @@ import type { AnomalyBar } from "@/features/dashboard/infrastructure/api/anomaly
 import { useNasdaqChart } from "@/features/dashboard/application/hooks/useNasdaqChart";
 import { useAnomalyBars } from "@/features/dashboard/application/hooks/useAnomalyBars";
 import ChartSkeleton from "@/features/dashboard/ui/components/skeletons/ChartSkeleton";
-import PeriodTabs from "@/features/dashboard/ui/components/PeriodTabs";
+import ChartIntervalTabs from "@/features/dashboard/ui/components/ChartIntervalTabs";
 
 const MARKER_COLOR_SELECTED = "#a855f7";
 // 한국식: 상승 = 빨강, 하락 = 파랑 (ADR-0001 §4 결정)
@@ -47,10 +47,10 @@ export default function NasdaqChart() {
   const timelineState = useAtomValue(timelineAtom);
   const anomalyBarsState = useAtomValue(anomalyBarsAtom);
   const selectedBarTime = useAtomValue(selectedBarTimeAtom);
-  const period = useAtomValue(periodAtom);
+  const chartInterval = useAtomValue(chartIntervalAtom);
   const ticker = useAtomValue(tickerAtom);
   const companyName = useAtomValue(companyNameAtom);
-  const { setPeriod } = useNasdaqChart();
+  const { setChartInterval } = useNasdaqChart();
   const setChartApi = useSetAtom(chartApiAtom);
   const setChartContainer = useSetAtom(chartContainerAtom);
   const setSelectedEvent = useSetAtom(selectedEventAtom);
@@ -58,12 +58,12 @@ export default function NasdaqChart() {
   const setSelectedBarTime = useSetAtom(selectedBarTimeAtom);
   const setSelectedAnomalyBar = useSetAtom(selectedAnomalyBarAtom);
 
-  // period 변경 시 경제지표 선택 초기화 (history 선택은 유지)
+  // chartInterval 변경 시 경제지표 선택 초기화 (history 선택은 유지)
   useEffect(() => {
     setSelectedBarTime(null);
     setSelectedEvent(null);
     setSelectedAnomalyBar(null);
-  }, [period, setSelectedBarTime, setSelectedEvent, setSelectedAnomalyBar]);
+  }, [chartInterval, setSelectedBarTime, setSelectedEvent, setSelectedAnomalyBar]);
 
   // ticker 변경 시 모든 선택 초기화
   useEffect(() => {
@@ -290,12 +290,12 @@ export default function NasdaqChart() {
     const idx = bars.findIndex((b) => b.time === selectedBarTime);
     if (idx === -1) return;
 
-    const half = period === "1D" ? 30 : period === "1W" ? 13 : period === "1M" ? 6 : 3;
+    const half = chartInterval === "1D" ? 30 : chartInterval === "1W" ? 13 : chartInterval === "1M" ? 6 : 3;
     chartRef.current.timeScale().setVisibleLogicalRange({
       from: idx - half,
       to: idx + half,
     });
-  }, [selectedBarTime, period, nasdaqState]);
+  }, [selectedBarTime, chartInterval, nasdaqState]);
 
   if (nasdaqState.status === "LOADING") {
     return <ChartSkeleton />;
@@ -320,7 +320,7 @@ export default function NasdaqChart() {
             {companyName ?? "NASDAQ Composite"}
           </span>
         </div>
-        <PeriodTabs selected={period} onChange={setPeriod} />
+        <ChartIntervalTabs selected={chartInterval} onChange={setChartInterval} />
       </div>
       <div ref={containerRef} className="w-full" />
     </div>

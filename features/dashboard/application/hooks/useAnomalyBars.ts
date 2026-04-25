@@ -3,13 +3,13 @@
 import { useEffect } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
 import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
-import { periodAtom } from "@/features/dashboard/application/atoms/periodAtom";
+import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
 import { anomalyBarsAtom } from "@/features/dashboard/application/atoms/anomalyBarsAtom";
 import { fetchAnomalyBars } from "@/features/dashboard/infrastructure/api/anomalyBarsApi";
 
 export function useAnomalyBars() {
   const ticker = useAtomValue(tickerAtom);
-  const period = useAtomValue(periodAtom);
+  const chartInterval = useAtomValue(chartIntervalAtom);
   const setState = useSetAtom(anomalyBarsAtom);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export function useAnomalyBars() {
     setState({ status: "LOADING" });
 
     const controller = new AbortController();
-    fetchAnomalyBars(effectiveTicker, period, controller.signal)
+    fetchAnomalyBars(effectiveTicker, chartInterval, controller.signal)
       .then((data) => {
         setState({
           status: "SUCCESS",
@@ -35,5 +35,5 @@ export function useAnomalyBars() {
       });
 
     return () => controller.abort();
-  }, [ticker, period, setState]);
+  }, [ticker, chartInterval, setState]);
 }

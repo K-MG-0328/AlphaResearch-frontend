@@ -1,6 +1,6 @@
 import { httpClient } from "@/infrastructure/http/httpClient";
 import type { ApiResponse } from "@/infrastructure/http/apiResponse";
-import type { Period } from "@/features/dashboard/domain/model/period";
+import type { ChartInterval } from "@/features/dashboard/domain/model/chartInterval";
 
 /**
  * 차트 이상치 봉 1건 (§13.4 C / §17).
@@ -26,7 +26,7 @@ export interface AnomalyBarsResponse {
 
 export async function fetchAnomalyBars(
   ticker: string,
-  chartInterval: Period,
+  chartInterval: ChartInterval,
   signal?: AbortSignal,
 ): Promise<AnomalyBarsResponse> {
   // ADR-0001: chartInterval 사용. 1Y → 1Q 별칭 처리는 백엔드에서 수행.

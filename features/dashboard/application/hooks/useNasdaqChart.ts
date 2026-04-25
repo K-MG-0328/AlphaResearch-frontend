@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { nasdaqAtom } from "@/features/dashboard/application/atoms/nasdaqAtom";
 import { dashboardAtom } from "@/features/dashboard/application/atoms/dashboardAtom";
-import { periodAtom } from "@/features/dashboard/application/atoms/periodAtom";
+import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
 import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
 import { companyNameAtom } from "@/features/dashboard/application/atoms/companyNameAtom";
 import { fetchNasdaqBars } from "@/features/dashboard/infrastructure/api/nasdaqApi";
@@ -12,7 +12,7 @@ import { fetchStockBars } from "@/features/dashboard/infrastructure/api/stockBar
 import { HttpError } from "@/infrastructure/http/httpClient";
 
 export function useNasdaqChart() {
-  const [period, setPeriod] = useAtom(periodAtom);
+  const [chartInterval, setChartInterval] = useAtom(chartIntervalAtom);
   const ticker = useAtomValue(tickerAtom);
   const setNasdaq = useSetAtom(nasdaqAtom);
   const setDashboard = useSetAtom(dashboardAtom);
@@ -22,7 +22,7 @@ export function useNasdaqChart() {
     setNasdaq({ status: "LOADING" });
 
     if (ticker) {
-      fetchStockBars(ticker, period)
+      fetchStockBars(ticker, chartInterval)
         .then(({ bars, companyName }) => {
           setNasdaq({ status: "SUCCESS", bars });
           setCompanyName(companyName);
@@ -41,7 +41,7 @@ export function useNasdaqChart() {
         });
     } else {
       setCompanyName(null);
-      fetchNasdaqBars(period)
+      fetchNasdaqBars(chartInterval)
         .then((bars) => {
           setNasdaq({ status: "SUCCESS", bars });
           setDashboard({ status: "LOADED" });
@@ -51,7 +51,7 @@ export function useNasdaqChart() {
           setDashboard({ status: "ERROR", message: "대시보드 로딩에 실패했습니다." });
         });
     }
-  }, [period, ticker, setNasdaq, setDashboard]);
+  }, [chartInterval, ticker, setNasdaq, setDashboard]);
 
-  return { period, setPeriod };
+  return { chartInterval, setChartInterval };
 }

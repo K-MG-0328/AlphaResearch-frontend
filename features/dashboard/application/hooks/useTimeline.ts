@@ -3,13 +3,13 @@
 import { useEffect } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
 import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
-import { periodAtom } from "@/features/dashboard/application/atoms/periodAtom";
+import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
 import { timelineAtom } from "@/features/dashboard/application/atoms/timelineAtom";
 import { streamTimeline } from "@/features/dashboard/infrastructure/api/timelineApi";
 
 export function useTimeline() {
   const ticker = useAtomValue(tickerAtom);
-  const period = useAtomValue(periodAtom);
+  const chartInterval = useAtomValue(chartIntervalAtom);
   const setTimeline = useSetAtom(timelineAtom);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export function useTimeline() {
 
     streamTimeline(
       effectiveTicker,
-      period,
+      chartInterval,
       (progress) => {
         setTimeline({ status: "LOADING_WITH_PROGRESS", progress });
       },
@@ -56,5 +56,5 @@ export function useTimeline() {
       controller.abort();
       clearTimeout(timeoutId);
     };
-  }, [ticker, period, setTimeline]);
+  }, [ticker, chartInterval, setTimeline]);
 }

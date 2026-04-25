@@ -3,11 +3,11 @@ import { env } from "@/infrastructure/config/env";
 import type { ApiResponse } from "@/infrastructure/http/apiResponse";
 import type { TimelineResponse } from "@/features/dashboard/domain/model/timelineEvent";
 import type { TimelineProgress } from "@/features/dashboard/domain/state/timelineState";
-import type { Period } from "@/features/dashboard/domain/model/period";
+import type { ChartInterval } from "@/features/dashboard/domain/model/chartInterval";
 
 export async function fetchTimeline(
   ticker: string,
-  chartInterval: Period,
+  chartInterval: ChartInterval,
   signal?: AbortSignal,
 ): Promise<TimelineResponse> {
   // §18.2: enrich_titles 파라미터 생략 — backend default(True)로 항상 LLM 타이틀.
@@ -20,7 +20,7 @@ export async function fetchTimeline(
 
 export function streamTimeline(
   ticker: string,
-  chartInterval: Period,
+  chartInterval: ChartInterval,
   onProgress: (progress: TimelineProgress) => void,
   signal?: AbortSignal,
 ): Promise<TimelineResponse> {
