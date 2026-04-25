@@ -6,28 +6,22 @@ export type CategoryFilter = "ALL" | TimelineCategory;
 
 const FILTER_ORDER: CategoryFilter[] = [
   "ALL",
-  "PRICE",
   "CORPORATE",
   "ANNOUNCEMENT",
-  "NEWS",
   "MACRO",
 ];
 
 const LABEL: Record<CategoryFilter, string> = {
   ALL: "전체",
-  PRICE: "가격",
   CORPORATE: "기업",
   ANNOUNCEMENT: "공시",
-  NEWS: "뉴스",
   MACRO: "매크로",
 };
 
 const ACTIVE_STYLE: Record<CategoryFilter, string> = {
   ALL: "bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900",
-  PRICE: "bg-amber-500/20 text-amber-600 dark:text-amber-400",
   CORPORATE: "bg-blue-500/20 text-blue-600 dark:text-blue-400",
   ANNOUNCEMENT: "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400",
-  NEWS: "bg-sky-500/20 text-sky-600 dark:text-sky-400",
   MACRO: "bg-violet-500/20 text-violet-600 dark:text-violet-400",
 };
 

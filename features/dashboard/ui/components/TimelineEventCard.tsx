@@ -6,14 +6,25 @@ import type { TimelineEvent, TimelineCategory } from "@/features/dashboard/domai
 type CategoryStyle = { bg: string; text: string; label: string };
 
 const CATEGORY_STYLE: Record<TimelineCategory, CategoryStyle> = {
-  PRICE:        { bg: "bg-amber-500/10",   text: "text-amber-500",   label: "가격" },
   CORPORATE:    { bg: "bg-blue-500/10",    text: "text-blue-500",    label: "기업" },
   ANNOUNCEMENT: { bg: "bg-emerald-500/10", text: "text-emerald-500", label: "공시" },
-  NEWS:         { bg: "bg-sky-500/10",     text: "text-sky-500",     label: "뉴스" },
   MACRO:        { bg: "bg-violet-500/10",  text: "text-violet-500",  label: "매크로" },
 };
 
 const FALLBACK_STYLE: CategoryStyle = { bg: "bg-zinc-500/10", text: "text-zinc-500", label: "기타" };
+
+// ANNOUNCEMENT 세분류 라벨 (8-K Item / DART 보고서 기반).
+// 백엔드 AnnouncementEventType 과 매칭. 카드 우측 상단에 카테고리(공시) 옆 작은 칩으로 표시.
+const ANNOUNCEMENT_TYPE_LABEL: Record<string, string> = {
+  MERGER_ACQUISITION: "합병·인수",
+  CONTRACT: "계약",
+  MANAGEMENT_CHANGE: "경영진 변경",
+  ACCOUNTING_ISSUE: "회계 이슈",
+  REGULATORY: "규제·소송",
+  PRODUCT_LAUNCH: "신제품·신기술",
+  CRISIS: "위기 사건",
+  MAJOR_EVENT: "주요사항",
+};
 
 interface Props {
   event: TimelineEvent;
@@ -70,8 +81,15 @@ export default function TimelineEventCard({ event, eventIdx, isLast = false, isS
             )}
             {event.date}
           </span>
-          <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${style.bg} ${style.text}`}>
-            {style.label}
+          <span className="flex items-center gap-1">
+            {event.category === "ANNOUNCEMENT" && ANNOUNCEMENT_TYPE_LABEL[event.type] && (
+              <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium ${style.bg} ${style.text}`}>
+                {ANNOUNCEMENT_TYPE_LABEL[event.type]}
+              </span>
+            )}
+            <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${style.bg} ${style.text}`}>
+              {style.label}
+            </span>
           </span>
         </div>
 
