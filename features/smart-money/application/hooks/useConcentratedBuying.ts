@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect } from "react";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { concentratedBuyingAtom } from "@/features/smart-money/application/atoms/concentratedBuyingAtom";
+import { investorFlowRefreshAtom } from "@/features/smart-money/application/atoms/smartMoneyBootstrapAtom";
 import { fetchConcentratedBuying } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
 import type { ConcentratedBuyingDays } from "@/features/smart-money/domain/model/concentratedBuyingItem";
 
 export function useConcentratedBuying(days: ConcentratedBuyingDays) {
   const [concentratedBuyingState, setConcentratedBuyingState] = useAtom(concentratedBuyingAtom);
+  const refreshKey = useAtomValue(investorFlowRefreshAtom);
 
   useEffect(() => {
     setConcentratedBuyingState({ status: "LOADING" });
@@ -19,7 +21,7 @@ export function useConcentratedBuying(days: ConcentratedBuyingDays) {
       .catch(() => {
         setConcentratedBuyingState({ status: "ERROR", message: "집중 매수 데이터를 불러오는데 실패했습니다." });
       });
-  }, [days, setConcentratedBuyingState]);
+  }, [days, refreshKey, setConcentratedBuyingState]);
 
   return { concentratedBuyingState };
 }

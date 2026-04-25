@@ -54,6 +54,36 @@ export async function fetchConcentratedBuying(days: ConcentratedBuyingDays): Pro
   }));
 }
 
+export async function checkInvestorFlowHasData(): Promise<boolean> {
+  try {
+    const { data } = await httpClient<ApiResponse<InvestorFlowResponse>>(
+      `/api/v1/smart-money/investor-flow?investor_type=FOREIGN&limit=1`
+    );
+    return data.date !== null && data.date !== undefined;
+  } catch {
+    return false;
+  }
+}
+
+export async function triggerCollectInvestorFlow(): Promise<void> {
+  await httpClient<ApiResponse<unknown>>(`/api/v1/smart-money/collect`, { method: "POST" });
+}
+
+export async function checkGlobalPortfolioHasData(): Promise<boolean> {
+  try {
+    const { data } = await httpClient<ApiResponse<GlobalPortfolioResponse>>(
+      `/api/v1/smart-money/global-portfolio`
+    );
+    return data.total > 0;
+  } catch {
+    return false;
+  }
+}
+
+export async function triggerCollectGlobalPortfolio(): Promise<void> {
+  await httpClient<ApiResponse<unknown>>(`/api/v1/smart-money/global-portfolio/collect`, { method: "POST" });
+}
+
 export async function fetchGlobalInvestors(): Promise<GlobalInvestor[]> {
   const { data } = await httpClient<ApiResponse<GlobalInvestorsResponse>>(
     `/api/v1/smart-money/investors`

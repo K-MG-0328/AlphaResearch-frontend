@@ -1,4 +1,5 @@
 import GlobalPortfolioTable from "@/features/smart-money/ui/components/GlobalPortfolioTable";
+import GlobalPortfolioBootstrap from "@/features/smart-money/ui/components/GlobalPortfolioBootstrap";
 import { smartMoneyStyles as s } from "@/features/smart-money/ui/components/smartMoneyStyles";
 
 export default function GlobalPortfolioPage() {
@@ -8,6 +9,7 @@ export default function GlobalPortfolioPage() {
         <div className={s.header.wrap}>
           <h1 className={s.header.title}>글로벌 저명 투자자 포트폴리오</h1>
         </div>
+        <GlobalPortfolioBootstrap />
         <GlobalPortfolioTable />
       </div>
     </div>

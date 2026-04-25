@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { globalPortfolioAtom, globalInvestorsAtom } from "@/features/smart-money/application/atoms/globalPortfolioAtom";
+import { globalPortfolioRefreshAtom } from "@/features/smart-money/application/atoms/smartMoneyBootstrapAtom";
 import { fetchGlobalPortfolio, fetchGlobalInvestors } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
 
 export function useGlobalInvestors() {
   const [investorsState, setInvestorsState] = useAtom(globalInvestorsAtom);
+  const refreshKey = useAtomValue(globalPortfolioRefreshAtom);
 
   useEffect(() => {
     fetchGlobalInvestors()
@@ -16,13 +18,14 @@ export function useGlobalInvestors() {
       .catch(() => {
         setInvestorsState({ status: "ERROR", message: "투자자 목록을 불러오는데 실패했습니다." });
       });
-  }, [setInvestorsState]);
+  }, [refreshKey, setInvestorsState]);
 
   return { investorsState };
 }
 
 export function useGlobalPortfolio(investorId: string | null) {
   const [portfolioState, setPortfolioState] = useAtom(globalPortfolioAtom);
+  const refreshKey = useAtomValue(globalPortfolioRefreshAtom);
 
   useEffect(() => {
     if (!investorId) {
@@ -40,7 +43,7 @@ export function useGlobalPortfolio(investorId: string | null) {
       .catch(() => {
         setPortfolioState({ status: "ERROR", message: "포트폴리오 데이터를 불러오는데 실패했습니다." });
       });
-  }, [investorId, setPortfolioState]);
+  }, [investorId, refreshKey, setPortfolioState]);
 
   return { portfolioState };
 }
