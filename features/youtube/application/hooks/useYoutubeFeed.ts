@@ -29,7 +29,7 @@ export function useYoutubeFeed() {
         setVideos(result.videos);
         setNextPageToken(result.nextPageToken);
       })
-      .catch(() => setError("영상 목록을 불러오는데 실패했습니다."))
+      .catch(() => setError("YouTube 영상을 불러오는데 실패했습니다. API 한도 초과 또는 네트워크 오류입니다."))
       .finally(() => setIsLoading(false));
   }, [watchlistVersion]);
 
