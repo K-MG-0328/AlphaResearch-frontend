@@ -420,32 +420,39 @@ export default function AnomalyCausalityPopup() {
                           const color = isUp ? "text-red-500" : "text-blue-500";
                           const sign = b.return_pct >= 0 ? "+" : "";
                           return (
-                            <li
-                              key={b.date}
-                              className="flex items-center justify-between gap-2 rounded-md bg-white px-2 py-1 dark:bg-zinc-900/40"
-                            >
-                              <span className="text-zinc-600 dark:text-zinc-300">
-                                {b.date}
-                              </span>
-                              <span className="flex items-center gap-2">
-                                <span className={`font-semibold ${color}`}>
-                                  {sign}
-                                  {b.return_pct.toFixed(2)}%
+                            <li key={b.date}>
+                              <button
+                                type="button"
+                                onClick={() => setSelected({ ticker, bar: b })}
+                                className="flex w-full items-center justify-between gap-2 rounded-md bg-white px-2 py-1 text-left transition hover:bg-blue-50 dark:bg-zinc-900/40 dark:hover:bg-blue-500/10"
+                                title="해당 봉으로 분석 점프"
+                              >
+                                <span className="flex items-center gap-1.5">
+                                  <span className="text-zinc-400">↗</span>
+                                  <span className="text-zinc-600 dark:text-zinc-300">
+                                    {b.date}
+                                  </span>
                                 </span>
-                                {b.volume_ratio != null && (
-                                  <span
-                                    className="text-zinc-500 dark:text-zinc-400"
-                                    title="평균 거래량 대비 배수"
-                                  >
-                                    ×{b.volume_ratio.toFixed(2)}
+                                <span className="flex items-center gap-2">
+                                  <span className={`font-semibold ${color}`}>
+                                    {sign}
+                                    {b.return_pct.toFixed(2)}%
                                   </span>
-                                )}
-                                {b.time_of_day && (
-                                  <span className="rounded-full bg-zinc-200/60 px-1.5 py-0.5 text-[9px] text-zinc-600 dark:bg-zinc-700/60 dark:text-zinc-300">
-                                    {b.time_of_day === "GAP" ? "갭" : "장중"}
-                                  </span>
-                                )}
-                              </span>
+                                  {b.volume_ratio != null && (
+                                    <span
+                                      className="text-zinc-500 dark:text-zinc-400"
+                                      title="평균 거래량 대비 배수"
+                                    >
+                                      ×{b.volume_ratio.toFixed(2)}
+                                    </span>
+                                  )}
+                                  {b.time_of_day && (
+                                    <span className="rounded-full bg-zinc-200/60 px-1.5 py-0.5 text-[9px] text-zinc-600 dark:bg-zinc-700/60 dark:text-zinc-300">
+                                      {b.time_of_day === "GAP" ? "갭" : "장중"}
+                                    </span>
+                                  )}
+                                </span>
+                              </button>
                             </li>
                           );
                         })}
