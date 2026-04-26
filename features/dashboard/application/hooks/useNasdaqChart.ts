@@ -7,13 +7,18 @@ import { dashboardAtom } from "@/features/dashboard/application/atoms/dashboardA
 import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
 import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
 import { companyNameAtom } from "@/features/dashboard/application/atoms/companyNameAtom";
-import { fetchNasdaqBars } from "@/features/dashboard/infrastructure/api/nasdaqApi";
 import { fetchStockBars } from "@/features/dashboard/infrastructure/api/stockBarsApi";
 import { HttpError } from "@/infrastructure/http/httpClient";
 
+// tickerAtom 이 null 일 때 사용하는 default ticker — useTimeline / useAnomalyBars 와
+// 일관된 fallback. 과거 useNasdaqChart 가 nasdaq(=^IXIC) endpoint 로 분기하던
+// 흐름을 stockBars endpoint 로 통일 (chartInterval 탭이 stockBars에는 정상 반응).
+const DEFAULT_TICKER = "NVDA";
+
 export function useNasdaqChart() {
   const [chartInterval, setChartInterval] = useAtom(chartIntervalAtom);
-  const ticker = useAtomValue(tickerAtom);
+  const tickerValue = useAtomValue(tickerAtom);
+  const ticker = tickerValue ?? DEFAULT_TICKER;
   const setNasdaq = useSetAtom(nasdaqAtom);
   const setDashboard = useSetAtom(dashboardAtom);
   const setCompanyName = useSetAtom(companyNameAtom);
@@ -21,37 +26,24 @@ export function useNasdaqChart() {
   useEffect(() => {
     setNasdaq({ status: "LOADING" });
 
-    if (ticker) {
-      fetchStockBars(ticker, chartInterval)
-        .then(({ bars, companyName }) => {
-          setNasdaq({ status: "SUCCESS", bars });
-          setCompanyName(companyName);
-          setDashboard({ status: "LOADED" });
-        })
-        .catch((err) => {
-          const is404 = err instanceof HttpError && err.status === 404;
-          setNasdaq({
-            status: "ERROR",
-            message: is404
-              ? `'${ticker}' 종목을 찾을 수 없습니다.`
-              : `${ticker} 데이터를 불러오는데 실패했습니다.`,
-          });
-          setCompanyName(null);
-          setDashboard({ status: "ERROR", message: "대시보드 로딩에 실패했습니다." });
+    fetchStockBars(ticker, chartInterval)
+      .then(({ bars, companyName }) => {
+        setNasdaq({ status: "SUCCESS", bars });
+        setCompanyName(companyName);
+        setDashboard({ status: "LOADED" });
+      })
+      .catch((err) => {
+        const is404 = err instanceof HttpError && err.status === 404;
+        setNasdaq({
+          status: "ERROR",
+          message: is404
+            ? `'${ticker}' 종목을 찾을 수 없습니다.`
+            : `${ticker} 데이터를 불러오는데 실패했습니다.`,
         });
-    } else {
-      setCompanyName(null);
-      fetchNasdaqBars(chartInterval)
-        .then((bars) => {
-          setNasdaq({ status: "SUCCESS", bars });
-          setDashboard({ status: "LOADED" });
-        })
-        .catch(() => {
-          setNasdaq({ status: "ERROR", message: "나스닥 데이터를 불러오는데 실패했습니다." });
-          setDashboard({ status: "ERROR", message: "대시보드 로딩에 실패했습니다." });
-        });
-    }
-  }, [chartInterval, ticker, setNasdaq, setDashboard]);
+        setCompanyName(null);
+        setDashboard({ status: "ERROR", message: "대시보드 로딩에 실패했습니다." });
+      });
+  }, [chartInterval, ticker, setNasdaq, setDashboard, setCompanyName]);
 
   return { chartInterval, setChartInterval };
 }
