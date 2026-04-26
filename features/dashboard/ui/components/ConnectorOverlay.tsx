@@ -6,6 +6,7 @@ import { selectedTimelineEventAtom } from "@/features/dashboard/application/atom
 import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/selectedBarAtom";
 import { chartApiAtom, chartContainerAtom } from "@/features/dashboard/application/atoms/chartApiAtom";
 import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
+import { expandedTimelineEventsAtom } from "@/features/dashboard/application/atoms/expandedTimelineAtom";
 import type { Time } from "lightweight-charts";
 
 interface Line {
@@ -28,6 +29,10 @@ export default function ConnectorOverlay({ wrapperRef }: ConnectorOverlayProps) 
   const chartApi = useAtomValue(chartApiAtom);
   const chartContainer = useAtomValue(chartContainerAtom);
   const chartInterval = useAtomValue(chartIntervalAtom);
+  // 카드 펼침/접힘으로 카드 위치가 변하면 좌표 재계산이 필요하다.
+  // wrapper 자체 크기는 max-h + overflow-y-auto 때문에 변하지 않아 ResizeObserver가 발화하지 않으므로
+  // atom 의존을 effect 의존성으로 추가한다.
+  const expandedTimelineEvents = useAtomValue(expandedTimelineEventsAtom);
 
   const recalculate = useCallback(() => {
     if (!selectedTimelineEvent || !selectedBarTime || !chartApi || !chartContainer || !wrapperRef.current) {
@@ -98,7 +103,7 @@ export default function ConnectorOverlay({ wrapperRef }: ConnectorOverlayProps) 
       cancelAnimationFrame(raf2);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTimelineEvent, selectedBarTime, chartApi, chartInterval]);
+  }, [selectedTimelineEvent, selectedBarTime, chartApi, chartInterval, expandedTimelineEvents]);
 
   // 차트 줌/패닝 시 좌표 재계산
   useEffect(() => {
@@ -126,7 +131,7 @@ export default function ConnectorOverlay({ wrapperRef }: ConnectorOverlayProps) 
 
     return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTimelineEvent, selectedBarTime, chartApi, chartInterval]);
+  }, [selectedTimelineEvent, selectedBarTime, chartApi, chartInterval, expandedTimelineEvents]);
 
   if (!line) return null;
 

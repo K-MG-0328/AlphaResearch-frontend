@@ -5,6 +5,7 @@ import { timelineAtom, selectedTimelineEventAtom } from "@/features/dashboard/ap
 import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/selectedBarAtom";
 import { nasdaqAtom } from "@/features/dashboard/application/atoms/nasdaqAtom";
 import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
+import { resetExpandedTimelineEventsAtom } from "@/features/dashboard/application/atoms/expandedTimelineAtom";
 import { useTimeline } from "@/features/dashboard/application/hooks/useTimeline";
 import LazyTimelineEventCard from "@/features/history/ui/components/LazyTimelineEventCard";
 import { useLazyTitles } from "@/features/history/application/useLazyTitles";
@@ -70,6 +71,7 @@ export default function HistoryPanel() {
   const [selectedTimelineEvent, setSelectedTimelineEvent] = useAtom(selectedTimelineEventAtom);
   const setSelectedBarTime = useSetAtom(selectedBarTimeAtom);
   const chartInterval = useAtomValue(chartIntervalAtom);
+  const resetExpandedEvents = useSetAtom(resetExpandedTimelineEventsAtom);
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("ALL");
 
   const categoryCounts = useMemo(() => {
@@ -91,6 +93,7 @@ export default function HistoryPanel() {
   useEffect(() => {
     setSelectedTimelineEvent(null);
     setSelectedBarTime(null);
+    resetExpandedEvents();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chartInterval]);
 
