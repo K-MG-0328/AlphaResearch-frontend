@@ -53,6 +53,25 @@ function dedupeSources(hypotheses: HypothesisResult[]): HypothesisSource[] {
   return out;
 }
 
+/** "이후 전개" 단일 셀. 한국식 색(상승 빨강/하락 파랑). null=데이터 부족 회색 "—" 표기. */
+function FutureReturnCell({ label, value }: { label: string; value: number | null | undefined }) {
+  const hasValue = value != null;
+  const color = !hasValue
+    ? "text-zinc-400 dark:text-zinc-500"
+    : value >= 0
+      ? "text-red-500"
+      : "text-blue-500";
+  const sign = hasValue ? (value >= 0 ? "+" : "") : "";
+  return (
+    <div className="rounded-md bg-white px-2 py-1.5 text-center dark:bg-zinc-900/40">
+      <div className="text-[10px] uppercase tracking-wide text-zinc-400">{label}</div>
+      <div className={`mt-0.5 text-sm font-semibold ${color}`}>
+        {hasValue ? `${sign}${value.toFixed(2)}%` : "—"}
+      </div>
+    </div>
+  );
+}
+
 export default function AnomalyCausalityPopup() {
   const [selected, setSelected] = useAtom(selectedAnomalyBarAtom);
   const state = useAtomValue(anomalyCausalityAtom);
@@ -275,7 +294,7 @@ export default function AnomalyCausalityPopup() {
             </ul>
           )}
 
-          {/* KR4 펼치기 토글 + 추가 섹션 (관련 출처/카테고리). 후속 PR 에서 이후 전개·유사 사건 추가 예정 */}
+          {/* KR4 펼치기 토글 + 추가 섹션 (이후 전개/관련 출처/카테고리). 수급·유사 사건은 후속 PR */}
           {state.status === "SUCCESS" && state.hypotheses.length > 0 && (
             <>
               <button
@@ -285,11 +304,25 @@ export default function AnomalyCausalityPopup() {
                 aria-expanded={expanded}
               >
                 <span>{expanded ? "▴ 접기" : "▾ 더보기"}</span>
-                <span className="text-zinc-400">관련 출처 · 카테고리</span>
+                <span className="text-zinc-400">이후 전개 · 관련 출처 · 카테고리</span>
               </button>
 
               {expanded && (
                 <div className="mt-3 space-y-3 rounded-lg border border-zinc-200 bg-zinc-50 p-3 text-xs dark:border-zinc-700 dark:bg-zinc-800/40">
+                  <div>
+                    <div className="mb-1 font-semibold text-zinc-700 dark:text-zinc-200">
+                      이후 전개{" "}
+                      <span className="font-normal text-zinc-400">
+                        (raw, benchmark 미차감)
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      <FutureReturnCell label="+1봉" value={bar.cumulative_return_1d} />
+                      <FutureReturnCell label="+5봉" value={bar.cumulative_return_5d} />
+                      <FutureReturnCell label="+20봉" value={bar.cumulative_return_20d} />
+                    </div>
+                  </div>
+
                   <div>
                     <div className="mb-1 font-semibold text-zinc-700 dark:text-zinc-200">
                       관련 출처
@@ -337,7 +370,7 @@ export default function AnomalyCausalityPopup() {
                   </div>
 
                   <p className="text-[10px] text-zinc-400 dark:text-zinc-500">
-                    이후 전개(+1d/+5d/+20d) · 수급 정보 · 유사 과거 사건은 후속 PR에서 추가 예정.
+                    수급 정보 · 유사 과거 사건은 후속 PR 예정.
                   </p>
                 </div>
               )}

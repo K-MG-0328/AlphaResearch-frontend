@@ -9,6 +9,8 @@ import type { ChartInterval } from "@/features/dashboard/domain/model/chartInter
  * - direction: "up" | "down" — 프론트 색 구분용 (한국식 up=빨강 / down=파랑).
  * - volume_ratio: σ window 평균 거래량 대비 배수. window 부족/평균 0 시 null.
  * - time_of_day: 일봉(1D) 한정 갭/장중 근사. "GAP" | "INTRADAY". 그 외 null.
+ * - cumulative_return_1d/5d/20d: spike 봉 종가 기준 +N봉 후 raw 누적 수익률(%).
+ *   benchmark 미차감. 미래 데이터 부족 시 null.
  */
 export interface AnomalyBar {
   date: string; // ISO "yyyy-mm-dd"
@@ -18,6 +20,9 @@ export interface AnomalyBar {
   close: number;
   volume_ratio?: number | null;
   time_of_day?: "GAP" | "INTRADAY" | null;
+  cumulative_return_1d?: number | null;
+  cumulative_return_5d?: number | null;
+  cumulative_return_20d?: number | null;
   causality: string | null;
 }
 
