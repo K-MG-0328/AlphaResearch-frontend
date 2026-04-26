@@ -6,6 +6,7 @@ import { selectedAnomalyBarAtom } from "@/features/dashboard/application/atoms/s
 import { anomalyCausalityAtom } from "@/features/dashboard/application/atoms/anomalyCausalityAtom";
 import { anomalyBarsAtom } from "@/features/dashboard/application/atoms/anomalyBarsAtom";
 import { useAnomalyCausality } from "@/features/dashboard/application/hooks/useAnomalyCausality";
+import LimitsInfoModal from "@/features/dashboard/ui/components/LimitsInfoModal";
 import type { AnomalyBar } from "@/features/dashboard/infrastructure/api/anomalyBarsApi";
 import type {
   HypothesisConfidence,
@@ -98,6 +99,7 @@ export default function AnomalyCausalityPopup() {
   const state = useAtomValue(anomalyCausalityAtom);
   const barsState = useAtomValue(anomalyBarsAtom);
   const [expanded, setExpanded] = useState(false);
+  const [limitsOpen, setLimitsOpen] = useState(false);
   useAnomalyCausality();
 
   const dedupedSources = useMemo(
@@ -131,6 +133,7 @@ export default function AnomalyCausalityPopup() {
   const returnSign = bar.return_pct >= 0 ? "+" : "";
 
   return (
+    <>
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       onClick={() => setSelected(null)}
@@ -459,12 +462,19 @@ export default function AnomalyCausalityPopup() {
           )}
         </div>
 
-        {/* Footer — KR5 한계 인정 + cached 상태 */}
+        {/* Footer — KR5 한계 인정 + cached 상태 + 한계 안내 모달 트리거 */}
         {state.status === "SUCCESS" && (
           <div className="border-t border-zinc-200 px-6 py-2 text-[10px] dark:border-zinc-800">
             <div className="flex items-center justify-between gap-2 text-zinc-500 dark:text-zinc-400">
-              <span>
-                ⚠ 본 분석은 LLM 추정이며 투자 추천이 아닙니다. 신뢰도 ‘하’는 회색으로 표시됩니다.
+              <span className="flex items-center gap-2">
+                <span>⚠ 본 분석은 LLM 추정이며 투자 추천이 아닙니다.</span>
+                <button
+                  type="button"
+                  onClick={() => setLimitsOpen(true)}
+                  className="text-blue-600 underline-offset-2 hover:underline dark:text-blue-400"
+                >
+                  ⓘ 한계 알아보기
+                </button>
               </span>
               <span className="shrink-0 text-zinc-400">
                 {state.cached ? "캐시 히트" : "신규 생성"}
@@ -474,5 +484,8 @@ export default function AnomalyCausalityPopup() {
         )}
       </div>
     </div>
+
+    <LimitsInfoModal open={limitsOpen} onClose={() => setLimitsOpen(false)} />
+    </>
   );
 }
