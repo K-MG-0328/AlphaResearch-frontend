@@ -338,11 +338,15 @@ export default function NasdaqChart() {
         </div>
         <ChartIntervalTabs selected={chartInterval} onChange={setChartInterval} />
       </div>
-      {/* KR7 — 마커 토글 + floor 임계값 슬라이더. localStorage 영속화. */}
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <MarkerToggleChips />
-        <FloorPctSlider />
-      </div>
+      {/* KR7 — 마커 토글 + floor 임계값 슬라이더. localStorage 영속화.
+          누적/Drawdown/Cluster 5종 마커가 backend 1D 전용이라 1W/1M/1Q 에선 ★ 만 동작 →
+          혼란 방지로 컨트롤 row 전체를 1D 에서만 노출. */}
+      {chartInterval === "1D" && (
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+          <MarkerToggleChips />
+          <FloorPctSlider />
+        </div>
+      )}
       <div ref={containerRef} className="w-full" />
     </div>
   );
