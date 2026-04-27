@@ -2,8 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { navbarStyles } from "@/ui/components/navbar/navbarStyles";
+
+// SSR/CSR 일치 가드 — 서버 렌더 시 false / 클라이언트 hydration 후 true.
+// `pathname` 이 SSR 에서 null 이라 active 클래스가 양쪽 false 로 일치 → hydration mismatch 회피.
+const subscribe = () => () => {};
+const getMounted = () => true;
+const getMountedServer = () => false;
 
 const menuItems = [
   { label: "Home", href: "/" },
@@ -27,8 +33,7 @@ interface NavbarProps {
 
 export default function Navbar({ isAuthenticated = false, onLogout }: NavbarProps) {
   const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(subscribe, getMounted, getMountedServer);
 
   const menuItemStyle = (href: string) => {
     const isActive = mounted && pathname === href;

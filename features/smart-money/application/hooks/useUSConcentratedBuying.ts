@@ -16,6 +16,8 @@ export function useUSConcentratedBuying(limit: number = 20) {
   const refreshKey = useAtomValue(globalPortfolioRefreshAtom);
 
   useEffect(() => {
+    // limit/refreshKey 변경 시 LOADING reset — single transition.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setState({ status: "LOADING" });
     fetchUSConcentratedBuying(limit)
       .then((items) => setState({ status: "SUCCESS", items }))

@@ -35,7 +35,9 @@ export function useKrPortfolio(investorName: string | null) {
   const refreshKey = useAtomValue(krPortfolioRefreshAtom);
 
   useEffect(() => {
+    // investorName/refreshKey 변경 시 IDLE/LOADING reset — single transition.
     if (!investorName) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setState({ status: "IDLE" });
       return;
     }

@@ -90,9 +90,8 @@ export default function ConnectorOverlay({ wrapperRef }: ConnectorOverlayProps) 
       return;
     }
 
-    let raf1: number;
     let raf2: number;
-    raf1 = requestAnimationFrame(() => {
+    const raf1 = requestAnimationFrame(() => {
       raf2 = requestAnimationFrame(() => {
         recalculate();
       });

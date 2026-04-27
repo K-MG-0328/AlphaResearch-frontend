@@ -19,6 +19,8 @@ export function useBoardPost(postId: number) {
   const router = useRouter();
 
   useEffect(() => {
+    // postId 변경 시 LOADING 으로 reset — single transition 이라 cascading 위험 없음.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setState({ status: "LOADING" });
 
     fetchBoardPost(postId)
