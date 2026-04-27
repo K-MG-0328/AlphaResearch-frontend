@@ -54,12 +54,13 @@ export interface AnomalyBarsResponse {
 export async function fetchAnomalyBars(
   ticker: string,
   chartInterval: ChartInterval,
+  floorPct: number | null,
   signal?: AbortSignal,
 ): Promise<AnomalyBarsResponse> {
   // ADR-0001: chartInterval 사용. 1Y → 1Q 별칭 처리는 백엔드에서 수행.
-  const res = await httpClient<ApiResponse<AnomalyBarsResponse>>(
-    `/api/v1/history-agent/anomaly-bars?ticker=${encodeURIComponent(ticker)}&chartInterval=${chartInterval}`,
-    { signal }
-  );
+  // KR7 — floorPct null 이면 query 미포함 → backend 종목 군 기본값 적용.
+  const base = `/api/v1/history-agent/anomaly-bars?ticker=${encodeURIComponent(ticker)}&chartInterval=${chartInterval}`;
+  const url = floorPct != null ? `${base}&floorPct=${floorPct}` : base;
+  const res = await httpClient<ApiResponse<AnomalyBarsResponse>>(url, { signal });
   return res.data;
 }

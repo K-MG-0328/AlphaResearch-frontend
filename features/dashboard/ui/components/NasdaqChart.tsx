@@ -30,6 +30,7 @@ import { useAnomalyBars } from "@/features/dashboard/application/hooks/useAnomal
 import ChartSkeleton from "@/features/dashboard/ui/components/skeletons/ChartSkeleton";
 import ChartIntervalTabs from "@/features/dashboard/ui/components/ChartIntervalTabs";
 import MarkerToggleChips from "@/features/dashboard/ui/components/MarkerToggleChips";
+import FloorPctSlider from "@/features/dashboard/ui/components/FloorPctSlider";
 
 const MARKER_COLOR_SELECTED = "#a855f7";
 // 한국식: 상승 = 빨강, 하락 = 파랑 (ADR-0001 §4 결정)
@@ -326,9 +327,10 @@ export default function NasdaqChart() {
         </div>
         <ChartIntervalTabs selected={chartInterval} onChange={setChartInterval} />
       </div>
-      {/* KR7 — 마커 토글. 사용자 선호 localStorage 영속화. */}
-      <div className="mb-3">
+      {/* KR7 — 마커 토글 + floor 임계값 슬라이더. localStorage 영속화. */}
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <MarkerToggleChips />
+        <FloorPctSlider />
       </div>
       <div ref={containerRef} className="w-full" />
     </div>
