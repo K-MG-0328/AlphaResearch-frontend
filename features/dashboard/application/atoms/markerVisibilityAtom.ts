@@ -14,7 +14,11 @@ export const DEFAULT_MARKER_VISIBILITY: MarkerVisibility = {
   volatility_cluster: false,
 };
 
+// getOnInit: false — SSR/hydration mismatch 방지. 첫 렌더는 default 로 일치시키고
+// 마운트 후 localStorage 값을 읽어 갱신한다.
 export const markerVisibilityAtom = atomWithStorage<MarkerVisibility>(
   "antelligen.dashboard.markerVisibility",
   DEFAULT_MARKER_VISIBILITY,
+  undefined,
+  { getOnInit: false },
 );
