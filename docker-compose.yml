@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  nextjs-app:
+    image: ghcr.io/${REPO_USER}/multi-agent-ui:latest
+    container_name: multi-agent-ui
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - multi-agent-net
+
+  nginx:
+    image: nginx:stable
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - "37333:80"  # 외부에서 접속할 포트
+    volumes:
+      - ./conf:/etc/nginx/conf.d:ro
+    depends_on:
+      - nextjs-app
+    networks:
+      - multi-agent-net
+
+networks:
+  multi-agent-net:
+    driver: bridge
