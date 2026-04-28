@@ -64,6 +64,12 @@ const ANNOUNCEMENT_TYPE_LABEL: Record<string, string> = {
   SHAREHOLDER_MEETING: "주주총회",
   REGULATION_FD: "공정공시",
   ARTICLES_AMENDMENT: "정관 개정",  // 8-K Item 5.03 정관·부속법 개정
+  // DART 한국 공시 5종 (OKR 1 P1.5)
+  EARNINGS_GUIDANCE: "잠정실적",
+  STOCK_SPLIT: "액면분할",
+  TREASURY_STOCK: "자사주",
+  RIGHTS_OFFERING: "유상증자",
+  BONUS_ISSUE: "무상증자",
 };
 
 interface Props {
