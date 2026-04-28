@@ -8,8 +8,8 @@ import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartI
 import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
 import { resetExpandedTimelineEventsAtom } from "@/features/dashboard/application/atoms/expandedTimelineAtom";
 import { useTimeline } from "@/features/dashboard/application/hooks/useTimeline";
-import LazyTimelineEventCard from "@/features/history/ui/components/LazyTimelineEventCard";
-import { useLazyTitles } from "@/features/history/application/useLazyTitles";
+import LazyTimelineEventCard from "@/features/dashboard/ui/components/LazyTimelineEventCard";
+import { useLazyTitles } from "@/features/dashboard/application/hooks/useLazyTitles";
 import type { TimelineEvent } from "@/features/dashboard/domain/model/timelineEvent";
 import CategoryFilterChips, { type CategoryFilter } from "@/features/dashboard/ui/components/CategoryFilterChips";
 import MacroSubFilterChips, { type MacroTypeFilter } from "@/features/dashboard/ui/components/MacroSubFilterChips";
