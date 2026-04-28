@@ -65,22 +65,29 @@ export function streamMacroTimeline(
             if (!chunk.trim()) continue;
 
             let eventName = "message";
-            let eventData = "";
+            const dataLines: string[] = [];
 
             for (const line of chunk.split("\n")) {
               if (line.startsWith("event: ")) eventName = line.slice(7);
-              else if (line.startsWith("data: ")) eventData = line.slice(6);
+              // SSE 스펙: 여러 data: 라인은 \n 으로 이어 붙임.
+              else if (line.startsWith("data: ")) dataLines.push(line.slice(6));
             }
+            const eventData = dataLines.join("\n");
+            if (!eventData) continue;
 
-            if (eventName === "progress") {
-              onProgress(JSON.parse(eventData) as TimelineProgress);
-            } else if (eventName === "done") {
-              resolve(JSON.parse(eventData) as TimelineResponse);
-              return;
-            } else if (eventName === "error") {
-              const { message } = JSON.parse(eventData) as { message: string };
-              reject(new Error(message));
-              return;
+            try {
+              if (eventName === "progress") {
+                onProgress(JSON.parse(eventData) as TimelineProgress);
+              } else if (eventName === "done") {
+                resolve(JSON.parse(eventData) as TimelineResponse);
+                return;
+              } else if (eventName === "error") {
+                const { message } = JSON.parse(eventData) as { message: string };
+                reject(new Error(message));
+                return;
+              }
+            } catch (parseErr) {
+              console.warn("[streamMacroTimeline] SSE 데이터 파싱 실패", { eventName, parseErr });
             }
           }
         }

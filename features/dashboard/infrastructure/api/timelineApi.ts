@@ -55,22 +55,31 @@ export function streamTimeline(
             if (!chunk.trim()) continue;
 
             let eventName = "message";
-            let eventData = "";
+            const dataLines: string[] = [];
 
             for (const line of chunk.split("\n")) {
               if (line.startsWith("event: ")) eventName = line.slice(7);
-              else if (line.startsWith("data: ")) eventData = line.slice(6);
+              // SSE 스펙: 여러 data: 라인은 \n 으로 이어 붙임. 단일 라인이어도 동작.
+              else if (line.startsWith("data: ")) dataLines.push(line.slice(6));
             }
+            const eventData = dataLines.join("\n");
+            if (!eventData) continue;
 
-            if (eventName === "progress") {
-              onProgress(JSON.parse(eventData) as TimelineProgress);
-            } else if (eventName === "done") {
-              resolve(JSON.parse(eventData) as TimelineResponse);
-              return;
-            } else if (eventName === "error") {
-              const { message } = JSON.parse(eventData) as { message: string };
-              reject(new Error(message));
-              return;
+            // 방어: 백엔드 응답이 깨지더라도 SSE 루프가 unhandled rejection 으로
+            // 종료되지 않도록 JSON.parse 를 try-catch 로 감싼다.
+            try {
+              if (eventName === "progress") {
+                onProgress(JSON.parse(eventData) as TimelineProgress);
+              } else if (eventName === "done") {
+                resolve(JSON.parse(eventData) as TimelineResponse);
+                return;
+              } else if (eventName === "error") {
+                const { message } = JSON.parse(eventData) as { message: string };
+                reject(new Error(message));
+                return;
+              }
+            } catch (parseErr) {
+              console.warn("[streamTimeline] SSE 데이터 파싱 실패", { eventName, parseErr });
             }
           }
         }
