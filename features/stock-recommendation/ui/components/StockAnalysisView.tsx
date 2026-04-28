@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useAtomValue } from "jotai";
 import { useStockAnalysis } from "@/features/stock-recommendation/application/hooks/useStockAnalysis";
 import {
@@ -16,12 +17,31 @@ import AnalysisResultHeader from "@/features/stock-recommendation/ui/components/
 import AgentCard from "@/features/stock-recommendation/ui/components/AgentCard";
 import BusinessOverviewCard from "@/features/stock-recommendation/ui/components/BusinessOverviewCard";
 import HistoryTimeline from "@/features/stock-recommendation/ui/components/HistoryTimeline";
+import SnsSignalCard from "@/features/sentiment/ui/components/SnsSignalCard";
+import { useSnsSignal } from "@/features/sentiment/application/hooks/useSnsSignal";
 
 export default function StockAnalysisView() {
   const { state, submit, reset } = useStockAnalysis();
   const history = useAtomValue(analysisHistoryAtom);
   const overallSignal = useAtomValue(overallSignalAtom);
   const overallConfidence = useAtomValue(overallConfidenceAtom);
+
+  // SNS 감정분석 훅 — Hooks 규칙상 조건부 return 전 최상위에서 호출
+  const { fetchSignal: fetchSnsSignal } = useSnsSignal();
+
+  // ticker: SUCCESS 상태일 때만 유효, 다른 상태에서는 "" → useEffect 미실행
+  const ticker =
+    state.status === "SUCCESS"
+      ? (state.result.agentResults.find((r) => r.agentName === "finance")
+          ?.data as { stockName?: string })?.stockName ?? ""
+      : "";
+
+  // SNS 감정분석: ticker가 확정되면 자동으로 분석 트리거
+  useEffect(() => {
+    if (ticker) {
+      fetchSnsSignal(ticker);
+    }
+  }, [ticker, fetchSnsSignal]);
 
   // ERROR
   if (state.status === "ERROR") {
@@ -63,10 +83,6 @@ export default function StockAnalysisView() {
 
   // SUCCESS
   const { result, resultStatus } = state;
-  const ticker = result.agentResults[0]?.data
-    ? (result.agentResults.find((r) => r.agentName === "finance")?.data as { stockName?: string })
-        ?.stockName ?? ""
-    : "";
 
   return (
     <div className="flex flex-col gap-4">
@@ -95,11 +111,13 @@ export default function StockAnalysisView() {
           <HistoryTimeline history={history} />
         </div>
 
-        {/* 오른쪽 패널: 에이전트 카드 */}
+        {/* 오른쪽 패널: 에이전트 카드 + SNS 감정분석 */}
         <div className="flex flex-col gap-4 flex-1 min-w-0">
           {result.agentResults.map((agentResult) => (
             <AgentCard key={agentResult.agentName} result={agentResult} />
           ))}
+          {/* SNS 감정분석 카드 — A안: agentResults.map 다음 */}
+          <SnsSignalCard ticker={ticker} />
         </div>
       </div>
     </div>
