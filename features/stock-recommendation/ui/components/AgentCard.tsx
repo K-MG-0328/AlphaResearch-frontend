@@ -17,6 +17,7 @@ const AGENT_LABELS: Record<string, string> = {
   news: "뉴스",
   disclosure: "공시",
   finance: "재무",
+  sentiment: "SNS 감정분석",
 };
 
 export default function AgentCard({ result }: Props) {
