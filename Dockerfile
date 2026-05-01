@@ -1,3 +1,5 @@
+# Base image를 ARM64로 명시
+# FROM --platform=linux/arm64 node:20-alpine
 # workflow의 platforms 설정이 자동으로 처리
 FROM node:20-alpine AS builder
 
