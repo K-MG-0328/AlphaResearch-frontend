@@ -365,7 +365,7 @@ export default function AnomalyCausalityPopup() {
 
                     {h.supporting_tools_called.length > 0 && (
                       <div className="mt-2 flex flex-wrap gap-1">
-                        {h.supporting_tools_called.map((tool) => (
+                        {[...new Set(h.supporting_tools_called)].map((tool) => (
                           <span
                             key={tool}
                             className="rounded-full bg-purple-500/10 px-1.5 py-0.5 text-[10px] text-purple-500"
