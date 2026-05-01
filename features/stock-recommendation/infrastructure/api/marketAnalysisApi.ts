@@ -1,4 +1,4 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
+import { agentHttpClient as httpClient } from "@/infrastructure/http/agentHttpClient";
 import type { ApiResponse } from "@/infrastructure/http/apiResponse";
 import type {
   MarketAnalysisRequest,
