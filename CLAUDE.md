@@ -21,16 +21,9 @@ npm run lint     # Run ESLint
 
 main에 직접 푸시 금지. 항상 PR 워크플로우 사용.
 
-1. `passgiant` fork에 작업 브랜치 생성 후 푸시
-2. `passgiant/branch` → `EDDI-RobotAcademy/main` PR 생성
+1. `main`에서 작업 브랜치 분기 후 push (`origin` = `K-MG-0328/AlphaResearch-frontend`)
+2. `origin/branch` → `origin/main` PR 생성
 3. **merge commit**으로 머지 (squash 금지 — 원본 커밋 SHA 보존)
-4. 머지 후 반드시 fork sync 실행:
-   ```bash
-   git fetch upstream && git merge --ff-only upstream/main && git push origin main
-   ```
-
-- origin: `passgiant/antelligen-*` (fork)
-- upstream: `EDDI-RobotAcademy/antelligen-*` (원본)
 
 ## 프로젝트 구조
 
