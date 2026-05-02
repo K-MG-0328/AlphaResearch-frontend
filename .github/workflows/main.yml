@@ -35,19 +35,19 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/${{ secrets.REPO_USER }}/antelligen-frontend:latest
+          tags: ghcr.io/${{ secrets.REPO_USER }}/alpharesearch-frontend:latest
           platforms: linux/arm64
 
   deploy:
     needs: build-and-push
-    runs-on: [self-hosted, antelligen-frontend]
+    runs-on: [self-hosted, alpharesearch-frontend]
 
     steps:
       - name: GHCR Login
         run: echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ secrets.REPO_USER }} --password-stdin
     
       - name: Pull latest image
-        run: docker pull ghcr.io/${{ secrets.REPO_USER }}/antelligen-frontend:latest
+        run: docker pull ghcr.io/${{ secrets.REPO_USER }}/alpharesearch-frontend:latest
 
       - name: Stop old container
         run: |
@@ -62,9 +62,9 @@ jobs:
         run: |
           sleep 5
           if curl -sSf http://localhost:37333/ > /dev/null; then
-            echo "antelligen-frontend is UP"
+            echo "alpharesearch-frontend is UP"
           else
             echo "Health check failed"
-            docker logs antelligen-frontend --tail 200
+            docker logs alpharesearch-frontend --tail 200
             exit 1
           fi

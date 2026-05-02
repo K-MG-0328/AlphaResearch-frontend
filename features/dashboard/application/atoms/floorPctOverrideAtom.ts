@@ -9,7 +9,7 @@ export const FLOOR_PCT_STEP = 0.1;
 // getOnInit: false — SSR/hydration mismatch 방지. 첫 렌더는 null(자동) 로 일치시키고
 // 마운트 후 localStorage 값을 읽어 갱신한다.
 export const floorPctOverrideAtom = atomWithStorage<number | null>(
-  "antelligen.dashboard.floorPctOverride",
+  "alpharesearch.dashboard.floorPctOverride",
   null,
   undefined,
   { getOnInit: false },
