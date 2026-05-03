@@ -1,11 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useAtomValue, useSetAtom } from "jotai";
-import { useRouter } from "next/navigation";
-import { authAtom } from "@/features/auth/application/atoms/authAtom";
-import { getSavedArticles, deleteBookmark, type SavedArticleItem } from "@/features/news/infrastructure/api/newsApi";
-import { savedInterestArticleAtom } from "@/features/news/application/atoms/savedInterestArticleAtom";
+import { useSavedArticles } from "@/features/news/application/hooks/useSavedArticles";
 import { newsListStyles as s } from "@/features/news/ui/components/newsListStyles";
 
 const PAGE_SIZE = 10;
@@ -14,59 +9,16 @@ const deleteButtonStyle =
   "shrink-0 rounded-md border border-red-200 bg-white px-3 py-1 text-xs text-red-500 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-red-800 dark:bg-zinc-800 dark:text-red-400 dark:hover:bg-zinc-700";
 
 export default function SavedNewsPage() {
-  const authState = useAtomValue(authAtom);
-  const setSavedArticle = useSetAtom(savedInterestArticleAtom);
-  const router = useRouter();
-
-  function handleView(article: SavedArticleItem) {
-    setSavedArticle({
-      status: "SUCCESS",
-      article: {
-        id: article.article_id,
-        title: article.title,
-        source: article.source,
-        link: article.link,
-        publishedAt: article.published_at,
-        content: article.content ?? article.snippet ?? "",
-      },
-    });
-    router.push(`/news/article/${article.article_id}`);
-  }
-  const [articles, setArticles] = useState<SavedArticleItem[]>([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
-  const [deletingIds, setDeletingIds] = useState<Set<number>>(new Set());
-
-  useEffect(() => {
-    if (authState.status === "LOADING") return;
-    if (authState.status === "UNAUTHENTICATED") {
-      router.replace("/login");
-      return;
-    }
-    setStatus("loading");
-    getSavedArticles(page, PAGE_SIZE)
-      .then((result) => {
-        setArticles(result.articles);
-        setTotalPages(result.totalPages);
-        setStatus("success");
-      })
-      .catch(() => setStatus("error"));
-  }, [page, authState.status, router]);
-
-  async function handleDelete(articleId: number) {
-    setDeletingIds((prev) => new Set(prev).add(articleId));
-    try {
-      await deleteBookmark(articleId);
-      setArticles((prev) => prev.filter((a) => a.article_id !== articleId));
-    } finally {
-      setDeletingIds((prev) => {
-        const next = new Set(prev);
-        next.delete(articleId);
-        return next;
-      });
-    }
-  }
+  const {
+    articles,
+    page,
+    totalPages,
+    status,
+    deletingIds,
+    setPage,
+    handleView,
+    handleDelete,
+  } = useSavedArticles(PAGE_SIZE);
 
   return (
     <div className={s.page}>
@@ -122,7 +74,7 @@ export default function SavedNewsPage() {
                 <div className={s.pagination.wrap}>
                   <button
                     className={s.pagination.button}
-                    onClick={() => setPage((p) => p - 1)}
+                    onClick={() => setPage(page - 1)}
                     disabled={page <= 1}
                   >
                     이전
@@ -138,7 +90,7 @@ export default function SavedNewsPage() {
                   )}
                   <button
                     className={s.pagination.button}
-                    onClick={() => setPage((p) => p + 1)}
+                    onClick={() => setPage(page + 1)}
                     disabled={page >= totalPages}
                   >
                     다음

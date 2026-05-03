@@ -1,77 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useAtomValue } from "jotai";
 import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
-import { savedInterestArticleAtom } from "@/features/news/application/atoms/savedInterestArticleAtom";
-import { getInterestArticle } from "@/features/news/infrastructure/api/newsApi";
-import { HttpError } from "@/infrastructure/http/httpClient";
-import type { SavedInterestArticle } from "@/features/news/domain/model/savedInterestArticle";
-
-function hasContent(a: SavedInterestArticle) {
-  return !!a.content;
-}
+import { useInterestArticle } from "@/features/news/application/hooks/useInterestArticle";
 
 export default function ArticlePage() {
-  const atomState = useAtomValue(savedInterestArticleAtom);
   const params = useParams();
   const router = useRouter();
+  const articleId = params.id ? Number(params.id) : null;
+  const { article, status } = useInterestArticle(articleId);
 
-  const atomArticle =
-    atomState.status === "SUCCESS" && hasContent(atomState.article)
-      ? atomState.article
-      : null;
-
-  const [article, setArticle] = useState<SavedInterestArticle | null>(atomArticle);
-  const [fetchStatus, setFetchStatus] = useState<"loading" | "done" | "error">(
-    atomArticle ? "done" : "loading"
-  );
-
-  useEffect(() => {
-    if (atomArticle) return;
-
-    if (atomState.status === "UNAUTHENTICATED") {
-      router.replace("/login");
-      return;
-    }
-
-    const id = Number(params.id);
-    if (!id) {
-      setFetchStatus("error");
-      return;
-    }
-
-    // atom에 데이터는 있지만 content가 없는 경우 기본 정보는 유지
-    const base = atomState.status === "SUCCESS" ? atomState.article : null;
-
-    getInterestArticle(id)
-      .then((result) => {
-        setArticle({
-          id: result.id,
-          title: result.title,
-          source: result.source,
-          link: result.link,
-          publishedAt: result.published_at,
-          content: result.content,
-        });
-        setFetchStatus("done");
-      })
-      .catch((e: unknown) => {
-        if (e instanceof HttpError && e.status === 401) {
-          router.replace("/login");
-        } else if (base) {
-          // API 실패해도 기본 정보(제목·링크 등)는 표시
-          setArticle(base);
-          setFetchStatus("done");
-        } else {
-          setFetchStatus("error");
-        }
-      });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (fetchStatus === "loading") {
+  if (status === "loading") {
     return (
       <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
         <div className="mx-auto max-w-3xl px-6 py-16 text-center">
@@ -81,7 +20,7 @@ export default function ArticlePage() {
     );
   }
 
-  if (fetchStatus === "error" || !article) {
+  if (status === "error" || !article) {
     return (
       <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
         <div className="mx-auto max-w-3xl px-6 py-16 text-center">

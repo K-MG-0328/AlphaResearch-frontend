@@ -1,51 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { HttpError } from "@/infrastructure/http/httpClient";
-import type { CompanyProfile } from "@/features/company-profile/domain/model/companyProfile";
-import { fetchCompanyProfile } from "@/features/company-profile/infrastructure/api/companyProfileApi";
+import { useCompanyProfileSearch } from "@/features/company-profile/application/hooks/useCompanyProfileSearch";
 import CompanyProfileCard from "@/features/company-profile/ui/components/CompanyProfileCard";
 
 export default function CompanyProfileForm() {
-  const [ticker, setTicker] = useState("");
-  const [profile, setProfile] = useState<CompanyProfile | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const trimmed = ticker.trim();
-    if (!trimmed) {
-      setError("종목코드를 입력하세요.");
-      return;
-    }
-    setLoading(true);
-    setError(null);
-    setProfile(null);
-
-    try {
-      const result = await fetchCompanyProfile(trimmed);
-      setProfile(result);
-    } catch (err) {
-      if (err instanceof HttpError) {
-        if (err.status === 404) {
-          setError(`'${trimmed}' 종목을 찾을 수 없습니다.`);
-        } else {
-          setError(`조회 실패 (HTTP ${err.status})`);
-        }
-      } else if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("알 수 없는 오류가 발생했습니다.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { ticker, setTicker, profile, loading, error, submit } = useCompanyProfileSearch();
 
   return (
     <div className="space-y-6">
-      <form onSubmit={handleSubmit} className="flex gap-2">
+      <form onSubmit={submit} className="flex gap-2">
         <input
           type="text"
           value={ticker}
