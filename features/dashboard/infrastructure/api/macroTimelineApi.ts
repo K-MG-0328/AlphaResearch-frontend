@@ -13,7 +13,7 @@ export async function fetchMacroTimeline(
   limit?: number,
   signal?: AbortSignal,
 ): Promise<TimelineResponse> {
-  const params = new URLSearchParams({ region, lookback_range: lookbackRange });
+  const params = new URLSearchParams({ region, lookbackRange });
   if (limit !== undefined) params.set("limit", String(limit));
   const res = await httpClient<ApiResponse<TimelineResponse>>(
     `/api/v1/history-agent/macro-timeline?${params.toString()}`,
@@ -34,7 +34,7 @@ export function streamMacroTimeline(
   signal?: AbortSignal,
 ): Promise<TimelineResponse> {
   return new Promise((resolve, reject) => {
-    const params = new URLSearchParams({ region, lookback_range: lookbackRange });
+    const params = new URLSearchParams({ region, lookbackRange });
     if (limit !== undefined) params.set("limit", String(limit));
     const url = `${env.apiBaseUrl}/api/v1/history-agent/macro-timeline/stream?${params.toString()}`;
 

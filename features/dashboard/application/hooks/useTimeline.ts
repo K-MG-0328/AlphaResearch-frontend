@@ -34,7 +34,7 @@ export function useTimeline() {
           setTimeline({
             status: "ETF",
             ticker: data.ticker,
-            period: interval,
+            chartInterval: interval,
           });
           return;
         }
@@ -42,7 +42,7 @@ export function useTimeline() {
           status: "SUCCESS",
           events: data.events,
           ticker: data.ticker,
-          period: interval,
+          chartInterval: interval,
           assetType: data.asset_type,
         });
       })
