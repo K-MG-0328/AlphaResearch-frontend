@@ -71,9 +71,9 @@ export default function HistoryPanel() {
     [timelineState]
   );
   const lazyTicker = timelineState.status === "SUCCESS" ? timelineState.ticker : "";
-  const lazyPeriod = timelineState.status === "SUCCESS" ? timelineState.period : "";
+  const lazyChartInterval = timelineState.status === "SUCCESS" ? timelineState.chartInterval : "";
   const lazyAssetType = timelineState.status === "SUCCESS" ? timelineState.assetType : undefined;
-  const { getCardRef } = useLazyTitles({ events: lazyEvents, ticker: lazyTicker, chartInterval: lazyPeriod });
+  const { getCardRef } = useLazyTitles({ events: lazyEvents, ticker: lazyTicker, chartInterval: lazyChartInterval });
   const nasdaqState = useAtomValue(nasdaqAtom);
   const [selectedTimelineEvent, setSelectedTimelineEvent] = useAtom(selectedTimelineEventAtom);
   const setSelectedBarTime = useSetAtom(selectedBarTimeAtom);
@@ -295,7 +295,7 @@ export default function HistoryPanel() {
                     key={`${event.date}-${idx}`}
                     event={event}
                     eventIdx={idx}
-                    eventKey={`${timelineState.ticker}:${timelineState.period}:${idx}`}
+                    eventKey={`${timelineState.ticker}:${timelineState.chartInterval}:${idx}`}
                     isLast={idx === lazyEvents.length - 1}
                     isSelected={selectedTimelineEvent?.idx === idx}
                     cardRef={getCardRef(idx)}
