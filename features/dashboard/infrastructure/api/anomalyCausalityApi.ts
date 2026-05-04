@@ -1,6 +1,6 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
 import type { HypothesisResult } from "@/features/dashboard/domain/model/timelineEvent";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 export interface AnomalyCausalityResponse {
   ticker: string;

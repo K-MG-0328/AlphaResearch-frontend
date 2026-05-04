@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useAtomValue } from "jotai";
-import { fetchUSConcentratedBuying } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
-import type { USConcentratedBuyingItem } from "@/features/smart-money/domain/model/usConcentratedBuyingItem";
+import { useEffect, useState } from "react";
+
 import { globalPortfolioRefreshAtom } from "@/features/smart-money/application/atoms/smartMoneyBootstrapAtom";
+import type { USConcentratedBuyingItem } from "@/features/smart-money/domain/model/usConcentratedBuyingItem";
+import { fetchUSConcentratedBuying } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
 
 type State =
   | { status: "LOADING" }

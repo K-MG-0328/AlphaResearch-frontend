@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useAtom } from "jotai";
+import { useEffect, useState } from "react";
+
 import { boardAtom } from "@/features/board/application/atoms/boardAtom";
 import { fetchBoardList } from "@/features/board/infrastructure/api/boardApi";
 

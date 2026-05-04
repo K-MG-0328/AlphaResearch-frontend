@@ -1,10 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useSetAtom } from "jotai";
-import { signupUser } from "@/features/auth/infrastructure/api/signupApi";
+import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
+
 import { authAtom } from "@/features/auth/application/atoms/authAtom";
+import { signupUser } from "@/features/auth/infrastructure/api/signupApi";
 
 export function useSignup() {
   const router = useRouter();

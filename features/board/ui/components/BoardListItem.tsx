@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+
 import type { BoardPost } from "@/features/board/domain/model/boardPost";
 import { boardListStyles as s } from "@/features/board/ui/components/boardListStyles";
 

@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
+
 import { useInvestorFlowRanking } from "@/features/smart-money/application/hooks/useInvestorFlowRanking";
 import { useInvestorFlowTrend } from "@/features/smart-money/application/hooks/useInvestorFlowTrend";
 import type { InvestorType } from "@/features/smart-money/domain/model/investorFlowItem";
-import { smartMoneyStyles as s } from "@/features/smart-money/ui/components/smartMoneyStyles";
 import InvestorFlowChart from "@/features/smart-money/ui/components/InvestorFlowChart";
+import { smartMoneyStyles as s } from "@/features/smart-money/ui/components/smartMoneyStyles";
 
 function formatNetBuyAmount(amount: number): string {
   const uk = Math.round(amount / 100_000_000);

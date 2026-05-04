@@ -1,11 +1,12 @@
 "use client";
 
 import { useAtomValue, useSetAtom } from "jotai";
-import type { TimelineEvent, TimelineCategory } from "@/features/dashboard/domain/model/timelineEvent";
+
 import {
   expandedTimelineEventsAtom,
   toggleExpandedTimelineEventAtom,
 } from "@/features/dashboard/application/atoms/expandedTimelineAtom";
+import type { TimelineEvent, TimelineCategory } from "@/features/dashboard/domain/model/timelineEvent";
 import {
   getTimelineColor,
   getTimelineSizeTokens,

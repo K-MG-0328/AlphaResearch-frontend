@@ -1,7 +1,7 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
-import type { NewsSearchResponse } from "@/features/news/domain/model/newsSearchResponse";
 import type { NewsArticle } from "@/features/news/domain/model/newsArticle";
+import type { NewsSearchResponse } from "@/features/news/domain/model/newsSearchResponse";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 export interface SaveArticleRequest {
   title: string;

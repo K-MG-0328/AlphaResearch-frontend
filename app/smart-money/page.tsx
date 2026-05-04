@@ -1,9 +1,9 @@
 import ConcentratedBuyingSection from "@/features/smart-money/ui/components/ConcentratedBuyingSection";
-import USConcentratedBuyingSection from "@/features/smart-money/ui/components/USConcentratedBuyingSection";
-import SmartMoneyTab from "@/features/smart-money/ui/components/SmartMoneyTab";
-import SmartMoneyBootstrap from "@/features/smart-money/ui/components/SmartMoneyBootstrap";
 import GlobalPortfolioBootstrap from "@/features/smart-money/ui/components/GlobalPortfolioBootstrap";
+import SmartMoneyBootstrap from "@/features/smart-money/ui/components/SmartMoneyBootstrap";
 import { smartMoneyStyles as s } from "@/features/smart-money/ui/components/smartMoneyStyles";
+import SmartMoneyTab from "@/features/smart-money/ui/components/SmartMoneyTab";
+import USConcentratedBuyingSection from "@/features/smart-money/ui/components/USConcentratedBuyingSection";
 
 export default function SmartMoneyPage() {
   return (

@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
 import { useSetAtom } from "jotai";
+import { useEffect } from "react";
+
 import { authAtom } from "@/features/auth/application/atoms/authAtom";
 import { fetchAuthMe } from "@/features/auth/infrastructure/api/authApi";
 

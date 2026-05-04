@@ -1,21 +1,22 @@
 "use client";
 
 import { useAtomValue } from "jotai";
-import { useStockAnalysis } from "@/features/stock-recommendation/application/hooks/useStockAnalysis";
+
 import {
   analysisHistoryAtom,
 } from "@/features/stock-recommendation/application/atoms/stockAnalysisAtom";
+import { useStockAnalysis } from "@/features/stock-recommendation/application/hooks/useStockAnalysis";
 import {
   overallSignalAtom,
   overallConfidenceAtom,
 } from "@/features/stock-recommendation/application/selectors/stockAnalysisSelectors";
-import { stockAnalysisStyles } from "@/features/stock-recommendation/ui/components/stockAnalysisStyles";
+import AgentCard from "@/features/stock-recommendation/ui/components/AgentCard";
 import AnalysisInputForm from "@/features/stock-recommendation/ui/components/AnalysisInputForm";
 import AnalysisLoadingSteps from "@/features/stock-recommendation/ui/components/AnalysisLoadingSteps";
 import AnalysisResultHeader from "@/features/stock-recommendation/ui/components/AnalysisResultHeader";
-import AgentCard from "@/features/stock-recommendation/ui/components/AgentCard";
 import BusinessOverviewCard from "@/features/stock-recommendation/ui/components/BusinessOverviewCard";
 import HistoryTimeline from "@/features/stock-recommendation/ui/components/HistoryTimeline";
+import { stockAnalysisStyles } from "@/features/stock-recommendation/ui/components/stockAnalysisStyles";
 
 export default function StockAnalysisView() {
   const { state, submit, reset } = useStockAnalysis();

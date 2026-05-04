@@ -1,9 +1,10 @@
 "use client";
 
 import { useAtomValue } from "jotai";
-import TimelineEventCard from "@/features/dashboard/ui/components/TimelineEventCard";
+
 import { titleOverrideAtomFamily, titleLoadingAtomFamily } from "@/features/dashboard/application/atoms/lazyTitleAtoms";
 import type { TimelineEvent } from "@/features/dashboard/domain/model/timelineEvent";
+import TimelineEventCard from "@/features/dashboard/ui/components/TimelineEventCard";
 
 interface Props {
   event: TimelineEvent;

@@ -1,8 +1,8 @@
 "use client";
 
 import { useRequireAuth } from "@/features/auth/application/hooks/useRequireAuth";
-import { useWatchlist } from "@/features/watchlist/application/hooks/useWatchlist";
 import { useStockThemes } from "@/features/auth/application/hooks/useStockThemes";
+import { useWatchlist } from "@/features/watchlist/application/hooks/useWatchlist";
 
 export default function WatchlistContent() {
   const { isLoading: authLoading, isReady } = useRequireAuth();

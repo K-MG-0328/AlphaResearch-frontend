@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import type { InvestorType } from "@/features/smart-money/domain/model/investorFlowItem";
 import InvestorFlowTable from "@/features/smart-money/ui/components/InvestorFlowTable";
 import { smartMoneyStyles as s } from "@/features/smart-money/ui/components/smartMoneyStyles";

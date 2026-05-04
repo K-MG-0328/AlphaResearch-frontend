@@ -1,6 +1,6 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
 import type { ChartInterval } from "@/features/dashboard/domain/model/chartInterval";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 // OKR 다층 탐지 — 봉 마커 type. backend default "zscore" backward-compat.
 // Phase 2 (PR #77) 에서 drawdown_start / drawdown_recovery 추가.

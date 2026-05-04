@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { HttpError } from "@/infrastructure/http/httpClient";
-import { fetchCompanyProfile } from "@/features/company-profile/infrastructure/api/companyProfileApi";
+
 import type { CompanyProfile } from "@/features/company-profile/domain/model/companyProfile";
+import { fetchCompanyProfile } from "@/features/company-profile/infrastructure/api/companyProfileApi";
+import { HttpError } from "@/infrastructure/http/httpClient";
 
 export type CompanyProfileSearchState = {
   ticker: string;

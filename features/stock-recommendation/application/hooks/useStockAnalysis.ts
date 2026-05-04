@@ -2,6 +2,7 @@
 
 import { useAtom } from "jotai";
 import { useRef, useEffect } from "react";
+
 import {
   stockAnalysisAtom,
   analysisHistoryAtom,

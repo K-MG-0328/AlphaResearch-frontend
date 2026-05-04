@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useAtom } from "jotai";
+import { useEffect, useState } from "react";
+
 import { youtubeAtom } from "@/features/youtube/application/atoms/youtubeAtom";
 import { fetchYoutubeList } from "@/features/youtube/infrastructure/api/youtubeApi";
 

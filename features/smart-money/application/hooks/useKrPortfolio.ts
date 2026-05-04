@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useAtomValue } from "jotai";
-import { fetchKrInvestors, fetchKrPortfolio } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
-import type { KrInvestor, KrPortfolioItem } from "@/features/smart-money/domain/model/krPortfolioItem";
+import { useEffect, useState } from "react";
+
 import { krPortfolioRefreshAtom } from "@/features/smart-money/application/atoms/smartMoneyBootstrapAtom";
+import type { KrInvestor, KrPortfolioItem } from "@/features/smart-money/domain/model/krPortfolioItem";
+import { fetchKrInvestors, fetchKrPortfolio } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
 
 type InvestorsState =
   | { status: "LOADING" }

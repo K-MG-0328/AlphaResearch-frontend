@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { useSetAtom } from "jotai";
+import { useEffect, useRef, useState } from "react";
+
 import { investorFlowRefreshAtom } from "@/features/smart-money/application/atoms/smartMoneyBootstrapAtom";
 import { checkInvestorFlowHasData, triggerCollectInvestorFlow } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
 

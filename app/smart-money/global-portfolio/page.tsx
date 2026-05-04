@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import GlobalPortfolioTable from "@/features/smart-money/ui/components/GlobalPortfolioTable";
+
 import GlobalPortfolioBootstrap from "@/features/smart-money/ui/components/GlobalPortfolioBootstrap";
-import KrPortfolioTable from "@/features/smart-money/ui/components/KrPortfolioTable";
+import GlobalPortfolioTable from "@/features/smart-money/ui/components/GlobalPortfolioTable";
 import KrPortfolioBootstrap from "@/features/smart-money/ui/components/KrPortfolioBootstrap";
+import KrPortfolioTable from "@/features/smart-money/ui/components/KrPortfolioTable";
 import { smartMoneyStyles as s } from "@/features/smart-money/ui/components/smartMoneyStyles";
 
 type Tab = "global" | "kr";

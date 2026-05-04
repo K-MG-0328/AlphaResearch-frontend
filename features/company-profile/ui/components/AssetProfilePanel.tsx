@@ -1,6 +1,7 @@
 "use client";
 
 import { useAtomValue } from "jotai";
+
 import { assetProfileAtom } from "@/features/company-profile/application/atoms/assetProfileAtom";
 import { useAssetProfile } from "@/features/company-profile/application/hooks/useAssetProfile";
 import type {

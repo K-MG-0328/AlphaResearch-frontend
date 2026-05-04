@@ -1,5 +1,5 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
 import type { StockTheme } from "@/features/auth/domain/model/stockTheme";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 interface RawStock {
   code: string;

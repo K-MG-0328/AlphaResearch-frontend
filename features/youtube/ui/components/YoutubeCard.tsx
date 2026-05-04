@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import type { YoutubeVideo } from "@/features/youtube/domain/model/youtubeVideo";
 import { youtubeListStyles as s } from "@/features/youtube/ui/components/youtubeListStyles";
 

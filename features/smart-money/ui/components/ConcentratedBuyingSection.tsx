@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import { useConcentratedBuying } from "@/features/smart-money/application/hooks/useConcentratedBuying";
 import type { ConcentratedBuyingDays } from "@/features/smart-money/domain/model/concentratedBuyingItem";
 import { smartMoneyStyles as s } from "@/features/smart-money/ui/components/smartMoneyStyles";

@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+
 import { newsAtom } from "@/features/news/application/atoms/newsAtom";
 
 export const newsArticlesAtom = atom((get) => {

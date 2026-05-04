@@ -1,9 +1,9 @@
-import { agentHttpClient as httpClient } from "@/infrastructure/http/agentHttpClient";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
 import type {
   MarketAnalysisRequest,
   MarketAnalysisResponse,
 } from "@/features/stock-recommendation/domain/model/marketAnalysis";
+import { agentHttpClient as httpClient } from "@/infrastructure/http/agentHttpClient";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
 
 export async function askMarketAnalysis(
   request: MarketAnalysisRequest

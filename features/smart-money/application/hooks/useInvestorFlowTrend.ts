@@ -1,6 +1,7 @@
 "use client";
 
 import { useAtom } from "jotai";
+
 import { smartMoneyTrendAtom } from "@/features/smart-money/application/atoms/smartMoneyTrendAtom";
 import { fetchInvestorFlowTrend } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
 

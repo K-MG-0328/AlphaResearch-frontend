@@ -1,8 +1,8 @@
 "use client";
 
-import { loginStyles } from "@/features/auth/ui/components/loginStyles";
-import { redirectOAuthLogin } from "@/features/auth/infrastructure/api/authApi";
 import type { OAuthProvider } from "@/features/auth/domain/intent/authIntent";
+import { redirectOAuthLogin } from "@/features/auth/infrastructure/api/authApi";
+import { loginStyles } from "@/features/auth/ui/components/loginStyles";
 
 const providerLabel: Record<OAuthProvider, string> = {
   kakao: "카카오로 로그인",

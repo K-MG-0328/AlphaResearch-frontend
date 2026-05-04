@@ -1,6 +1,6 @@
-import { env } from "@/infrastructure/config/env";
 import type { OAuthProvider } from "@/features/auth/domain/intent/authIntent";
 import type { AuthMeResponse } from "@/features/auth/domain/model/authMeResponse";
+import { env } from "@/infrastructure/config/env";
 
 function getProviderPath(provider: OAuthProvider): string {
   const pathMap: Record<OAuthProvider, string> = {

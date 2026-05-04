@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
-import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
+import { useEffect } from "react";
+
 import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
+import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
 import { timelineAtom } from "@/features/dashboard/application/atoms/timelineAtom";
 import { streamTimeline } from "@/features/dashboard/infrastructure/api/timelineApi";
 

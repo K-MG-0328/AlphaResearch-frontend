@@ -1,7 +1,7 @@
 "use client";
 
-import { kakaoButtonStyles } from "@/features/auth/ui/components/kakao/kakaoButtonStyles";
 import { redirectOAuthLogin } from "@/features/auth/infrastructure/api/authApi";
+import { kakaoButtonStyles } from "@/features/auth/ui/components/kakao/kakaoButtonStyles";
 
 export default function KakaoLoginButton() {
   return (

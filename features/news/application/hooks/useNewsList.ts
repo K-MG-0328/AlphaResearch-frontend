@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
 import { useAtom } from "jotai";
-import { newsAtom } from "@/features/news/application/atoms/newsAtom";
+import { useEffect } from "react";
+
 import { authAtom } from "@/features/auth/application/atoms/authAtom";
-import { getWatchlistNewsFeed } from "@/features/news/infrastructure/api/newsApi";
+import { newsAtom } from "@/features/news/application/atoms/newsAtom";
 import type { NewsArticle } from "@/features/news/domain/model/newsArticle";
+import { getWatchlistNewsFeed } from "@/features/news/infrastructure/api/newsApi";
 
 export function useNewsList() {
   const [newsState, setNewsState] = useAtom(newsAtom);

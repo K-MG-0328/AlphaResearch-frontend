@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useSyncExternalStore } from "react";
 import type { IChartApi } from "lightweight-charts";
+import { useCallback, useSyncExternalStore } from "react";
 
 // KR7 — 차트 줌 레벨에 따라 visible bar 개수를 추적.
 // `subscribeVisibleLogicalRangeChange` 은 외부 store(차트 라이브러리) 이벤트 → useSyncExternalStore 패턴.

@@ -3,11 +3,11 @@ import type {
   DisclosureData,
   FinanceData,
 } from "@/features/stock-recommendation/domain/model/stockAnalysis";
-import { stockAnalysisStyles } from "@/features/stock-recommendation/ui/components/stockAnalysisStyles";
-import SignalBadge from "@/features/stock-recommendation/ui/components/SignalBadge";
 import ConfidenceBar from "@/features/stock-recommendation/ui/components/ConfidenceBar";
-import FinanceDataTable from "@/features/stock-recommendation/ui/components/FinanceDataTable";
 import DisclosureDetails from "@/features/stock-recommendation/ui/components/DisclosureDetails";
+import FinanceDataTable from "@/features/stock-recommendation/ui/components/FinanceDataTable";
+import SignalBadge from "@/features/stock-recommendation/ui/components/SignalBadge";
+import { stockAnalysisStyles } from "@/features/stock-recommendation/ui/components/stockAnalysisStyles";
 
 interface Props {
   result: AgentResult;

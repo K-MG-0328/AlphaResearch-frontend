@@ -2,6 +2,7 @@
 
 import { useAtom, useSetAtom } from "jotai";
 import { useRouter } from "next/navigation";
+
 import { authAtom } from "@/features/auth/application/atoms/authAtom";
 import { isAuthenticatedAtom } from "@/features/auth/application/selectors/authSelectors";
 

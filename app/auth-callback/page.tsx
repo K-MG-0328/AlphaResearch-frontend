@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
+
 import { useAuthCallback } from "@/features/auth/application/hooks/useAuthCallback";
 
 function AuthCallbackContent() {

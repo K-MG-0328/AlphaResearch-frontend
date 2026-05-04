@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { useSetAtom } from "jotai";
-import { checkKrPortfolioHasData, triggerCollectKrPortfolio } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
+import { useEffect, useRef, useState } from "react";
+
 import { krPortfolioRefreshAtom } from "@/features/smart-money/application/atoms/smartMoneyBootstrapAtom";
+import { checkKrPortfolioHasData, triggerCollectKrPortfolio } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
 
 type BootstrapState = "idle" | "collecting" | "error";
 

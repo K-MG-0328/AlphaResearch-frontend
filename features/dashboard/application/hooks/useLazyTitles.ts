@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
 import { useStore } from "jotai";
+import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
+
+import { titleOverrideAtomFamily, titleLoadingAtomFamily } from "@/features/dashboard/application/atoms/lazyTitleAtoms";
 import type { TimelineEvent } from "@/features/dashboard/domain/model/timelineEvent";
 import { fetchEventTitles } from "@/features/dashboard/infrastructure/api/lazyTitleApi";
-import { titleOverrideAtomFamily, titleLoadingAtomFamily } from "@/features/dashboard/application/atoms/lazyTitleAtoms";
 
 const BATCH_SIZE = 50;
 const DEBOUNCE_MS = 500;

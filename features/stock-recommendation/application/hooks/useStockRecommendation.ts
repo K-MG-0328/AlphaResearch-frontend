@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
 import { authAtom } from "@/features/auth/application/atoms/authAtom";
-import { askMarketAnalysis } from "@/features/stock-recommendation/infrastructure/api/marketAnalysisApi";
 import type { MarketAnalysisResponse } from "@/features/stock-recommendation/domain/model/marketAnalysis";
+import { askMarketAnalysis } from "@/features/stock-recommendation/infrastructure/api/marketAnalysisApi";
 
 export function useStockRecommendation() {
   const [auth] = useAtom(authAtom);

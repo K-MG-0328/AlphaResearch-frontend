@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useAtomValue } from "jotai";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
 import { savedInterestArticleAtom } from "@/features/news/application/atoms/savedInterestArticleAtom";
+import type { SavedInterestArticle } from "@/features/news/domain/model/savedInterestArticle";
 import { getInterestArticle } from "@/features/news/infrastructure/api/newsApi";
 import { HttpError } from "@/infrastructure/http/httpClient";
-import type { SavedInterestArticle } from "@/features/news/domain/model/savedInterestArticle";
 
 function hasContent(a: SavedInterestArticle) {
   return !!a.content;

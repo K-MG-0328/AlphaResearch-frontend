@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
 import { isAuthenticatedAtom } from "@/features/auth/application/selectors/authSelectors";
 import { fetchBoardPost, updateBoardPost } from "@/features/board/infrastructure/api/boardApi";
 

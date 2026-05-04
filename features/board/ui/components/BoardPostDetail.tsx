@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+
 import { useBoardPost } from "@/features/board/application/hooks/useBoardPost";
 import { boardReadStyles as s } from "@/features/board/ui/components/boardReadStyles";
 

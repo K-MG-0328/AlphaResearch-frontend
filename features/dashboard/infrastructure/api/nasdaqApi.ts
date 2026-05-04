@@ -1,7 +1,7 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
-import type { NasdaqBar } from "@/features/dashboard/domain/model/nasdaqBar";
 import type { ChartInterval } from "@/features/dashboard/domain/model/chartInterval";
+import type { NasdaqBar } from "@/features/dashboard/domain/model/nasdaqBar";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 interface NasdaqBarRaw {
   bar_date: string;

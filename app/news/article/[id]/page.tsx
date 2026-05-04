@@ -1,7 +1,8 @@
 "use client";
 
-import { useRouter, useParams } from "next/navigation";
 import Link from "next/link";
+import { useRouter, useParams } from "next/navigation";
+
 import { useInterestArticle } from "@/features/news/application/hooks/useInterestArticle";
 
 export default function ArticlePage() {

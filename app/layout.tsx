@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
 import { env } from "@/infrastructure/config/env";
 import AppLayout from "@/ui/layout/AppLayout";

@@ -1,5 +1,5 @@
-import { youtubeListStyles as s } from "@/features/youtube/ui/components/youtubeListStyles";
 import YoutubeFeedList from "@/features/youtube/ui/components/YoutubeFeedList";
+import { youtubeListStyles as s } from "@/features/youtube/ui/components/youtubeListStyles";
 
 export default function YoutubePage() {
   return (

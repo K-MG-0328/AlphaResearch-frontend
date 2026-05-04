@@ -1,11 +1,11 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
 import type {
   EconomicSchedule,
   EventImpactAnalysis,
   ScheduleBoard,
   ScheduleImportance,
 } from "@/features/dashboard/domain/model/economicSchedule";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 interface RawAnalysisItem {
   id?: number | string;

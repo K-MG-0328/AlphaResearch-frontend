@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { TERM_ITEMS } from "@/features/auth/domain/model/termItem";
 
 interface TermsItemListProps {

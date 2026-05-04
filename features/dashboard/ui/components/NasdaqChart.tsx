@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
 import {
   createChart,
@@ -14,24 +13,26 @@ import {
   type Time,
   type MouseEventParams,
 } from "lightweight-charts";
-import { nasdaqAtom } from "@/features/dashboard/application/atoms/nasdaqAtom";
-import { timelineAtom, selectedTimelineEventAtom } from "@/features/dashboard/application/atoms/timelineAtom";
-import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/selectedBarAtom";
-import { selectedAnomalyBarAtom } from "@/features/dashboard/application/atoms/selectedAnomalyBarAtom";
-import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
-import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
-import { companyNameAtom } from "@/features/dashboard/application/atoms/companyNameAtom";
-import { chartApiAtom, chartContainerAtom } from "@/features/dashboard/application/atoms/chartApiAtom";
+import { useEffect, useRef } from "react";
+
 import { anomalyBarsAtom } from "@/features/dashboard/application/atoms/anomalyBarsAtom";
+import { chartApiAtom, chartContainerAtom } from "@/features/dashboard/application/atoms/chartApiAtom";
+import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
+import { companyNameAtom } from "@/features/dashboard/application/atoms/companyNameAtom";
 import { markerVisibilityAtom } from "@/features/dashboard/application/atoms/markerVisibilityAtom";
-import type { AnomalyBar } from "@/features/dashboard/infrastructure/api/anomalyBarsApi";
-import { useNasdaqChart } from "@/features/dashboard/application/hooks/useNasdaqChart";
+import { nasdaqAtom } from "@/features/dashboard/application/atoms/nasdaqAtom";
+import { selectedAnomalyBarAtom } from "@/features/dashboard/application/atoms/selectedAnomalyBarAtom";
+import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/selectedBarAtom";
+import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
+import { timelineAtom, selectedTimelineEventAtom } from "@/features/dashboard/application/atoms/timelineAtom";
 import { useAnomalyBars } from "@/features/dashboard/application/hooks/useAnomalyBars";
+import { useNasdaqChart } from "@/features/dashboard/application/hooks/useNasdaqChart";
 import { useVisibleBarCount } from "@/features/dashboard/application/hooks/useVisibleBarCount";
-import ChartSkeleton from "@/features/dashboard/ui/components/skeletons/ChartSkeleton";
+import type { AnomalyBar } from "@/features/dashboard/infrastructure/api/anomalyBarsApi";
 import ChartIntervalTabs from "@/features/dashboard/ui/components/ChartIntervalTabs";
-import MarkerToggleChips from "@/features/dashboard/ui/components/MarkerToggleChips";
 import FloorPctSlider from "@/features/dashboard/ui/components/FloorPctSlider";
+import MarkerToggleChips from "@/features/dashboard/ui/components/MarkerToggleChips";
+import ChartSkeleton from "@/features/dashboard/ui/components/skeletons/ChartSkeleton";
 
 const MARKER_COLOR_SELECTED = "#a855f7";
 // 한국식: 상승 = 빨강, 하락 = 파랑 (ADR-0001 §4 결정)

@@ -1,5 +1,5 @@
-import BoardEditForm from "@/features/board/ui/components/BoardEditForm";
 import { boardCreateStyles as s } from "@/features/board/ui/components/boardCreateStyles";
+import BoardEditForm from "@/features/board/ui/components/BoardEditForm";
 
 interface BoardEditPageProps {
   params: Promise<{ id: string }>;

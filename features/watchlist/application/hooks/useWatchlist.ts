@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useSetAtom } from "jotai";
+import { useEffect, useState } from "react";
+
+import { watchlistVersionAtom } from "@/features/watchlist/application/atoms/watchlistVersionAtom";
+import type { WatchlistItem } from "@/features/watchlist/domain/model/watchlistItem";
 import {
   fetchWatchlist,
   addToWatchlist,
   deleteFromWatchlist,
   updateWatchlistItem,
 } from "@/features/watchlist/infrastructure/api/watchlistApi";
-import type { WatchlistItem } from "@/features/watchlist/domain/model/watchlistItem";
-import { watchlistVersionAtom } from "@/features/watchlist/application/atoms/watchlistVersionAtom";
 
 interface Toast {
   message: string;

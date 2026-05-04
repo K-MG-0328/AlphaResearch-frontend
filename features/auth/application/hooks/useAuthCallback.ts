@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useSetAtom } from "jotai";
-import { fetchAuthMe } from "@/features/auth/infrastructure/api/authApi";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
 import { authAtom } from "@/features/auth/application/atoms/authAtom";
 import type { AuthState } from "@/features/auth/domain/state/authState";
+import { fetchAuthMe } from "@/features/auth/infrastructure/api/authApi";
 
 export function useAuthCallback() {
   const router = useRouter();

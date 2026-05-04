@@ -1,10 +1,10 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
-import type { BoardListResponse } from "@/features/board/domain/model/boardListResponse";
-import type { BoardDetailResponse } from "@/features/board/domain/model/boardDetailResponse";
 import type { BoardCreateResponse } from "@/features/board/domain/model/boardCreateResponse";
+import type { BoardDetailResponse } from "@/features/board/domain/model/boardDetailResponse";
+import type { BoardListResponse } from "@/features/board/domain/model/boardListResponse";
 import type { BoardPost } from "@/features/board/domain/model/boardPost";
 import type { BoardPostDetail } from "@/features/board/domain/model/boardPostDetail";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 export async function fetchBoardList(page: number, size: number): Promise<{ posts: BoardPost[]; totalCount: number; page: number }> {
   const { data } = await httpClient<ApiResponse<BoardListResponse>>(
