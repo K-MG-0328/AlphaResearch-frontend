@@ -9,7 +9,6 @@ import {
   type ISeriesApi,
   type ISeriesMarkersPluginApi,
   type CandlestickData,
-  type SeriesMarker,
   type Time,
   type MouseEventParams,
 } from "lightweight-charts";
@@ -28,30 +27,11 @@ import { timelineAtom, selectedTimelineEventAtom } from "@/features/dashboard/ap
 import { useAnomalyBars } from "@/features/dashboard/application/hooks/useAnomalyBars";
 import { useNasdaqChart } from "@/features/dashboard/application/hooks/useNasdaqChart";
 import { useVisibleBarCount } from "@/features/dashboard/application/hooks/useVisibleBarCount";
-import type { AnomalyBar } from "@/features/dashboard/infrastructure/api/anomalyBarsApi";
+import { buildChartMarkers } from "@/features/dashboard/application/utils/buildChartMarkers";
 import ChartIntervalTabs from "@/features/dashboard/ui/components/ChartIntervalTabs";
 import FloorPctSlider from "@/features/dashboard/ui/components/FloorPctSlider";
 import MarkerToggleChips from "@/features/dashboard/ui/components/MarkerToggleChips";
 import ChartSkeleton from "@/features/dashboard/ui/components/skeletons/ChartSkeleton";
-
-const MARKER_COLOR_SELECTED = "#a855f7";
-// 한국식: 상승 = 빨강, 하락 = 파랑 (ADR-0001 §4 결정)
-const ANOMALY_COLOR_STAR = "#EAB308";           // zscore — 노랑 ★
-const ANOMALY_COLOR_CUMULATIVE_5D = "#F97316";   // 5일 누적 — 오렌지 🔻
-const ANOMALY_COLOR_CUMULATIVE_20D = "#DC2626";  // 20일 누적 — 진홍 📉
-const ANOMALY_COLOR_DRAWDOWN_START = "#7C3AED";  // Drawdown 시작 — 보라 🔽
-const ANOMALY_COLOR_DRAWDOWN_RECOVERY = "#10B981"; // Drawdown 회복 — 에메랄드 🔼
-const ANOMALY_COLOR_VOLATILITY_CLUSTER = "#F59E0B"; // 변동성 클러스터 — 앰버 ⚡
-
-// OKR 다층 탐지 — backend type 별 마커 텍스트·색.
-const ANOMALY_MARKER_BY_TYPE: Record<string, { text: string; color: string }> = {
-  zscore:             { text: "★", color: ANOMALY_COLOR_STAR },
-  cumulative_5d:      { text: "🔻", color: ANOMALY_COLOR_CUMULATIVE_5D },
-  cumulative_20d:     { text: "📉", color: ANOMALY_COLOR_CUMULATIVE_20D },
-  drawdown_start:     { text: "🔽", color: ANOMALY_COLOR_DRAWDOWN_START },
-  drawdown_recovery:  { text: "🔼", color: ANOMALY_COLOR_DRAWDOWN_RECOVERY },
-  volatility_cluster: { text: "⚡", color: ANOMALY_COLOR_VOLATILITY_CLUSTER },
-};
 
 export default function NasdaqChart() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -238,71 +218,16 @@ export default function NasdaqChart() {
     };
   }, [nasdaqState, setChartApi, setChartContainer]);
 
-  // 마커 바인딩 — 이상치 봉(★) + 선택된 봉(●) 병합
+  // 마커 바인딩 — 이상치 봉(★) + 선택된 봉(●) 병합. 빌드 로직은 buildChartMarkers helper 로 추출.
   useEffect(() => {
     if (!markersRef.current) return;
-
-    const markers: SeriesMarker<Time>[] = [];
-
-    // 1) 이상치 봉 마커 — 차트 봉 time과 anomaly date 정밀도가 다를 수 있어
-    //    가장 가까운 봉으로 스냅하고, 같은 봉에 여러 이벤트가 매핑되면 |return_pct| 최대만 표시.
-    //    KR7 — markerVisibility 가 false 인 type 은 표시 안 함.
-    //    KR7 줌 필터 — visibleBarCount 가 클수록(많은 봉이 보이면) zscore 마커 중 큰 변동만.
-    //                  누적/Drawdown/Cluster 는 type 자체가 큰 이벤트라 줌 필터 면제.
-    const chartBars = nasdaqState.status === "SUCCESS" ? nasdaqState.bars : [];
-    if (anomalyBarsState.status === "SUCCESS" && chartBars.length > 0) {
-      const strongestByBar = new Map<string, AnomalyBar>();
-      for (const ev of anomalyBarsState.events) {
-        const evType = ev.type ?? "zscore";
-        if (!markerVisibility[evType]) continue;
-        if (evType === "zscore" && visibleBarCount != null) {
-          // KR1 종목 군별 floor (KOSPI 5/KOSDAQ 7/US 5) 와 동일 threshold 면 줌 필터 효과 0.
-          // floor 보다 높게 잡아 줌 아웃 시 backend 데이터를 frontend 가 추가로 거름.
-          const absReturn = Math.abs(ev.return_pct);
-          if (visibleBarCount > 500 && absReturn < 10) continue;
-          else if (visibleBarCount > 200 && absReturn < 7) continue;
-        }
-        const evTs = new Date(ev.date).getTime();
-        let closestTime = chartBars[0].time;
-        let minDiff = Math.abs(new Date(closestTime).getTime() - evTs);
-        for (const bar of chartBars) {
-          const diff = Math.abs(new Date(bar.time).getTime() - evTs);
-          if (diff < minDiff) {
-            minDiff = diff;
-            closestTime = bar.time;
-          }
-        }
-        const existing = strongestByBar.get(closestTime);
-        if (!existing || Math.abs(ev.return_pct) > Math.abs(existing.return_pct)) {
-          strongestByBar.set(closestTime, ev);
-        }
-      }
-      for (const [barTime, ev] of strongestByBar) {
-        const variant = ANOMALY_MARKER_BY_TYPE[ev.type ?? "zscore"] ?? ANOMALY_MARKER_BY_TYPE.zscore;
-        markers.push({
-          time: barTime as Time,
-          position: ev.direction === "up" ? "aboveBar" : "belowBar",
-          shape: "circle",
-          color: variant.color,
-          size: 0,
-          text: variant.text,
-        });
-      }
-    }
-
-    // 2) 사용자가 선택한 봉 — 보라 원 하이라이트
-    if (selectedBarTime) {
-      markers.push({
-        time: selectedBarTime as Time,
-        position: "aboveBar",
-        shape: "circle",
-        color: MARKER_COLOR_SELECTED,
-        size: 1,
-      });
-    }
-
-    // lightweight-charts 는 time 오름차순으로 정렬된 markers 를 요구
-    markers.sort((a, b) => String(a.time).localeCompare(String(b.time)));
+    const markers = buildChartMarkers({
+      anomalyEvents: anomalyBarsState.status === "SUCCESS" ? anomalyBarsState.events : [],
+      chartBars: nasdaqState.status === "SUCCESS" ? nasdaqState.bars : [],
+      markerVisibility,
+      visibleBarCount,
+      selectedBarTime,
+    });
     markersRef.current.setMarkers(markers);
   }, [anomalyBarsState, nasdaqState, selectedBarTime, markerVisibility, visibleBarCount]);
 
