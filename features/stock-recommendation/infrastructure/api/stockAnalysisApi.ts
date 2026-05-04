@@ -1,5 +1,3 @@
-import { agentHttpClient } from "@/infrastructure/http/agentHttpClient";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
 import type {
   AgentName,
   AgentResult,
@@ -11,6 +9,8 @@ import type {
   StockAnalysisRequest,
   StockAnalysisResult,
 } from "@/features/stock-recommendation/domain/model/stockAnalysis";
+import { agentHttpClient } from "@/infrastructure/http/agentHttpClient";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
 
 // ── Raw API response shapes (snake_case) ──────────────────────────────────────
 

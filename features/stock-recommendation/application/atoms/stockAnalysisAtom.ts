@@ -1,6 +1,7 @@
 import { atom } from "jotai";
-import type { StockAnalysisState } from "@/features/stock-recommendation/domain/state/stockAnalysisState";
+
 import type { AnalysisHistoryItem } from "@/features/stock-recommendation/domain/model/stockAnalysis";
+import type { StockAnalysisState } from "@/features/stock-recommendation/domain/state/stockAnalysisState";
 
 export const stockAnalysisAtom = atom<StockAnalysisState>({ status: "IDLE" });
 

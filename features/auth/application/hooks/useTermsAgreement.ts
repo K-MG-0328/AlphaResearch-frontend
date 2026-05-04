@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
+import { useState, useMemo } from "react";
+
 import { TERM_ITEMS } from "@/features/auth/domain/model/termItem";
 import { saveTermsAgreement } from "@/features/auth/infrastructure/storage/termsAgreementStorage";
 

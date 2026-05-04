@@ -1,6 +1,6 @@
-import { httpClient, HttpError } from "@/infrastructure/http/httpClient";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
 import type { WatchlistItem } from "@/features/watchlist/domain/model/watchlistItem";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import { httpClient, HttpError } from "@/infrastructure/http/httpClient";
 
 interface RawWatchlistStock {
   stock_code: string;

@@ -1,8 +1,8 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import type { YoutubeFeedResponse } from "@/features/youtube/domain/model/youtubeFeedResponse";
 import type { YoutubeListResponse } from "@/features/youtube/domain/model/youtubeListResponse";
 import type { YoutubeVideo } from "@/features/youtube/domain/model/youtubeVideo";
-import type { YoutubeFeedResponse } from "@/features/youtube/domain/model/youtubeFeedResponse";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 const PAGE_SIZE = 9;
 

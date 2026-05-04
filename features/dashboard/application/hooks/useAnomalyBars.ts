@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
-import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
-import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
+import { useEffect } from "react";
+
 import { anomalyBarsAtom } from "@/features/dashboard/application/atoms/anomalyBarsAtom";
+import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
 import { floorPctOverrideAtom } from "@/features/dashboard/application/atoms/floorPctOverrideAtom";
-import { fetchAnomalyBars } from "@/features/dashboard/infrastructure/api/anomalyBarsApi";
+import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
 import { useDebouncedValue } from "@/features/dashboard/application/hooks/useDebouncedValue";
+import { fetchAnomalyBars } from "@/features/dashboard/infrastructure/api/anomalyBarsApi";
 
 export function useAnomalyBars() {
   const ticker = useAtomValue(tickerAtom);

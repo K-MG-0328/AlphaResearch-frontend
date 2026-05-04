@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
 import { useAtom, useAtomValue } from "jotai";
+import { useEffect } from "react";
+
 import { smartMoneyAtom } from "@/features/smart-money/application/atoms/smartMoneyAtom";
 import { investorFlowRefreshAtom } from "@/features/smart-money/application/atoms/smartMoneyBootstrapAtom";
-import { fetchInvestorFlowRanking } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
 import type { InvestorType } from "@/features/smart-money/domain/model/investorFlowItem";
+import { fetchInvestorFlowRanking } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
 
 export function useInvestorFlowRanking(investorType: InvestorType) {
   const [smartMoneyState, setSmartMoneyState] = useAtom(smartMoneyAtom);

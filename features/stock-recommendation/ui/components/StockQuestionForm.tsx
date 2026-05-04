@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import { useStockRecommendation } from "@/features/stock-recommendation/application/hooks/useStockRecommendation";
 
 export default function StockQuestionForm() {

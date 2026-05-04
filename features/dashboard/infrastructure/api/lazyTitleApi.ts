@@ -1,5 +1,5 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
 import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 export interface TitleRequest {
   eventIdx: number;

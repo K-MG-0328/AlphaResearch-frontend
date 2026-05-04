@@ -1,7 +1,7 @@
 import type { AgentSignal } from "@/features/stock-recommendation/domain/model/stockAnalysis";
-import { stockAnalysisStyles } from "@/features/stock-recommendation/ui/components/stockAnalysisStyles";
-import SignalBadge from "@/features/stock-recommendation/ui/components/SignalBadge";
 import ConfidenceBar from "@/features/stock-recommendation/ui/components/ConfidenceBar";
+import SignalBadge from "@/features/stock-recommendation/ui/components/SignalBadge";
+import { stockAnalysisStyles } from "@/features/stock-recommendation/ui/components/stockAnalysisStyles";
 
 interface Props {
   ticker: string;

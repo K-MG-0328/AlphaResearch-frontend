@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+
 import type { HypothesisResult } from "@/features/dashboard/domain/model/timelineEvent";
 
 export type AnomalyCausalityState =

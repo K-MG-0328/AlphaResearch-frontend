@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
 import { useAtom, useAtomValue } from "jotai";
+import { useEffect } from "react";
+
 import { globalPortfolioAtom, globalInvestorsAtom } from "@/features/smart-money/application/atoms/globalPortfolioAtom";
 import { globalPortfolioRefreshAtom } from "@/features/smart-money/application/atoms/smartMoneyBootstrapAtom";
 import { fetchGlobalPortfolio, fetchGlobalInvestors } from "@/features/smart-money/infrastructure/api/smartMoneyApi";

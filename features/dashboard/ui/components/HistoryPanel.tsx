@@ -1,23 +1,25 @@
 "use client";
 
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { timelineAtom, selectedTimelineEventAtom } from "@/features/dashboard/application/atoms/timelineAtom";
-import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/selectedBarAtom";
-import { nasdaqAtom } from "@/features/dashboard/application/atoms/nasdaqAtom";
+import { useEffect, useMemo, useRef, useState } from "react";
+
 import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
-import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
 import { resetExpandedTimelineEventsAtom } from "@/features/dashboard/application/atoms/expandedTimelineAtom";
-import { useTimeline } from "@/features/dashboard/application/hooks/useTimeline";
-import LazyTimelineEventCard from "@/features/dashboard/ui/components/LazyTimelineEventCard";
+import { nasdaqAtom } from "@/features/dashboard/application/atoms/nasdaqAtom";
+import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/selectedBarAtom";
+import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
+import { timelineAtom, selectedTimelineEventAtom } from "@/features/dashboard/application/atoms/timelineAtom";
 import { useLazyTitles } from "@/features/dashboard/application/hooks/useLazyTitles";
+import { useTimeline } from "@/features/dashboard/application/hooks/useTimeline";
 import type { TimelineEvent } from "@/features/dashboard/domain/model/timelineEvent";
 import CategoryFilterChips, { type CategoryFilter } from "@/features/dashboard/ui/components/CategoryFilterChips";
-import MacroSubFilterChips, { type MacroTypeFilter } from "@/features/dashboard/ui/components/MacroSubFilterChips";
 import ImportanceFilter, {
   DEFAULT_IMPORTANCE_FILTER,
   type ImportanceFilterState,
 } from "@/features/dashboard/ui/components/ImportanceFilter";
-import { useEffect, useMemo, useRef, useState } from "react";
+import LazyTimelineEventCard from "@/features/dashboard/ui/components/LazyTimelineEventCard";
+import MacroSubFilterChips, { type MacroTypeFilter } from "@/features/dashboard/ui/components/MacroSubFilterChips";
+
 
 function HistorySkeleton() {
   return (

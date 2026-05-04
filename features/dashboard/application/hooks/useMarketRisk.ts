@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
 import { useSetAtom } from "jotai";
+import { useEffect } from "react";
+
 import { marketRiskAtom } from "@/features/dashboard/application/atoms/marketRiskAtom";
 import { fetchMarketRisk } from "@/features/dashboard/infrastructure/api/marketRiskApi";
 

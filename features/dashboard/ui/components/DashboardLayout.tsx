@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import NasdaqChart from "@/features/dashboard/ui/components/NasdaqChart";
+
+import AssetProfilePanel from "@/features/company-profile/ui/components/AssetProfilePanel";
+import AnomalyCausalityPopup from "@/features/dashboard/ui/components/AnomalyCausalityPopup";
 import ConnectorOverlay from "@/features/dashboard/ui/components/ConnectorOverlay";
 import HistoryPanel from "@/features/dashboard/ui/components/HistoryPanel";
+import NasdaqChart from "@/features/dashboard/ui/components/NasdaqChart";
 import StockSearch from "@/features/dashboard/ui/components/StockSearch";
-import AnomalyCausalityPopup from "@/features/dashboard/ui/components/AnomalyCausalityPopup";
-import AssetProfilePanel from "@/features/company-profile/ui/components/AssetProfilePanel";
 
 export default function DashboardLayout() {
   const wrapperRef = useRef<HTMLDivElement>(null);

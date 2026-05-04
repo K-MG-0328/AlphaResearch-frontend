@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useAtomValue } from "jotai";
-import { fetchYoutubeFeed } from "@/features/youtube/infrastructure/api/youtubeApi";
-import type { YoutubeVideo } from "@/features/youtube/domain/model/youtubeVideo";
+import { useEffect, useState } from "react";
+
 import { watchlistVersionAtom } from "@/features/watchlist/application/atoms/watchlistVersionAtom";
+import type { YoutubeVideo } from "@/features/youtube/domain/model/youtubeVideo";
+import { fetchYoutubeFeed } from "@/features/youtube/infrastructure/api/youtubeApi";
 
 export function useYoutubeFeed() {
   const [videos, setVideos] = useState<YoutubeVideo[]>([]);

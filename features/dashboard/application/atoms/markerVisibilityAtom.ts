@@ -1,4 +1,5 @@
 import { atomWithStorage } from "jotai/utils";
+
 import type { AnomalyBarType } from "@/features/dashboard/infrastructure/api/anomalyBarsApi";
 
 // KR7 — 차트 마커 가시성 토글. 사용자 선호를 localStorage 영속화.

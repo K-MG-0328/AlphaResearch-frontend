@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { nasdaqAtom } from "@/features/dashboard/application/atoms/nasdaqAtom";
-import { dashboardAtom } from "@/features/dashboard/application/atoms/dashboardAtom";
+import { useEffect } from "react";
+
 import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
-import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
 import { companyNameAtom } from "@/features/dashboard/application/atoms/companyNameAtom";
+import { dashboardAtom } from "@/features/dashboard/application/atoms/dashboardAtom";
+import { nasdaqAtom } from "@/features/dashboard/application/atoms/nasdaqAtom";
+import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
 import { fetchStockBars } from "@/features/dashboard/infrastructure/api/stockBarsApi";
 import { HttpError } from "@/infrastructure/http/httpClient";
 

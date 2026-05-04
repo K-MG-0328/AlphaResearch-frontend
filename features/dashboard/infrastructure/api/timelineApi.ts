@@ -1,9 +1,9 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
-import { env } from "@/infrastructure/config/env";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import type { ChartInterval } from "@/features/dashboard/domain/model/chartInterval";
 import type { TimelineResponse } from "@/features/dashboard/domain/model/timelineEvent";
 import type { TimelineProgress } from "@/features/dashboard/domain/state/timelineState";
-import type { ChartInterval } from "@/features/dashboard/domain/model/chartInterval";
+import { env } from "@/infrastructure/config/env";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 export async function fetchTimeline(
   ticker: string,

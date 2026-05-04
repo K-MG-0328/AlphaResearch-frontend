@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useSignupAccess } from "@/features/auth/application/hooks/useSignupAccess";
+
 import { useSignup } from "@/features/auth/application/hooks/useSignup";
+import { useSignupAccess } from "@/features/auth/application/hooks/useSignupAccess";
 import { useStockThemes } from "@/features/auth/application/hooks/useStockThemes";
-import TextField from "@/ui/components/TextField";
 import WatchlistStep from "@/features/auth/ui/components/WatchlistStep";
+import TextField from "@/ui/components/TextField";
 
 type Step = "profile" | "watchlist";
 

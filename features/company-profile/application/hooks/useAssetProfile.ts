@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
-import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
+import { useEffect } from "react";
+
 import { assetProfileAtom } from "@/features/company-profile/application/atoms/assetProfileAtom";
 import { fetchCompanyProfile } from "@/features/company-profile/infrastructure/api/companyProfileApi";
+import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
 import { HttpError } from "@/infrastructure/http/httpClient";
 
 const FALLBACK_TICKER = "NVDA";

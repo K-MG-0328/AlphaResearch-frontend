@@ -1,15 +1,15 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import type { ConcentratedBuyingDays, ConcentratedBuyingItem } from "@/features/smart-money/domain/model/concentratedBuyingItem";
+import type { ConcentratedBuyingResponse } from "@/features/smart-money/domain/model/concentratedBuyingResponse";
+import type { PortfolioChangeType, GlobalPortfolioItem, GlobalInvestor } from "@/features/smart-money/domain/model/globalPortfolioItem";
+import type { GlobalPortfolioResponse, GlobalInvestorsResponse } from "@/features/smart-money/domain/model/globalPortfolioResponse";
 import type { InvestorType, InvestorFlowItem } from "@/features/smart-money/domain/model/investorFlowItem";
 import type { InvestorFlowResponse } from "@/features/smart-money/domain/model/investorFlowResponse";
 import type { InvestorFlowTrend } from "@/features/smart-money/domain/model/investorFlowTrendItem";
 import type { InvestorFlowTrendResponse } from "@/features/smart-money/domain/model/investorFlowTrendResponse";
-import type { ConcentratedBuyingDays, ConcentratedBuyingItem } from "@/features/smart-money/domain/model/concentratedBuyingItem";
-import type { ConcentratedBuyingResponse } from "@/features/smart-money/domain/model/concentratedBuyingResponse";
-import type { PortfolioChangeType, GlobalPortfolioItem, GlobalInvestor } from "@/features/smart-money/domain/model/globalPortfolioItem";
-import type { USConcentratedBuyingItem } from "@/features/smart-money/domain/model/usConcentratedBuyingItem";
 import type { KrPortfolioItem, KrInvestor } from "@/features/smart-money/domain/model/krPortfolioItem";
-import type { GlobalPortfolioResponse, GlobalInvestorsResponse } from "@/features/smart-money/domain/model/globalPortfolioResponse";
+import type { USConcentratedBuyingItem } from "@/features/smart-money/domain/model/usConcentratedBuyingItem";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 export async function fetchInvestorFlowRanking(investorType: InvestorType): Promise<InvestorFlowItem[]> {
   const { data } = await httpClient<ApiResponse<InvestorFlowResponse>>(

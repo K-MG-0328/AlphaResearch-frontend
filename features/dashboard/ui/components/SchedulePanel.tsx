@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { useAtomValue } from "jotai";
+import { useState } from "react";
+
 import { economicScheduleAtom } from "@/features/dashboard/application/atoms/economicScheduleAtom";
 import { useEconomicSchedule } from "@/features/dashboard/application/hooks/useEconomicSchedule";
 import type {

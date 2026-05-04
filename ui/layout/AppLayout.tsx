@@ -1,9 +1,10 @@
 "use client";
 
 import { Provider } from "jotai";
-import Navbar from "@/ui/components/Navbar";
+
 import { useAuth } from "@/features/auth/application/hooks/useAuth";
 import { useAuthInit } from "@/features/auth/application/hooks/useAuthInit";
+import Navbar from "@/ui/components/Navbar";
 
 function AppLayoutInner({ children }: { children: React.ReactNode }) {
   useAuthInit();

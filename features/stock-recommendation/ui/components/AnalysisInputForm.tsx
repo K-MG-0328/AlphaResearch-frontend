@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import { stockAnalysisStyles } from "@/features/stock-recommendation/ui/components/stockAnalysisStyles";
 
 interface Props {

@@ -1,7 +1,7 @@
-import KakaoLoginButton from "@/features/auth/ui/components/kakao/KakaoLoginButton";
-import OAuthLoginButton from "@/features/auth/ui/components/OAuthLoginButton";
-import { loginStyles } from "@/features/auth/ui/components/loginStyles";
 import type { OAuthProvider } from "@/features/auth/domain/intent/authIntent";
+import KakaoLoginButton from "@/features/auth/ui/components/kakao/KakaoLoginButton";
+import { loginStyles } from "@/features/auth/ui/components/loginStyles";
+import OAuthLoginButton from "@/features/auth/ui/components/OAuthLoginButton";
 
 const otherProviders: OAuthProvider[] = ["google", "naver", "meta"];
 

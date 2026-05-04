@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+
 import type { SnsSignalResult } from "@/features/sentiment/domain/model/snsSignal";
 
 /** SNS 감정분석 상태 */

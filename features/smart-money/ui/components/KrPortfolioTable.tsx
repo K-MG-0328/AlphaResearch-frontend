@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import { useSetAtom } from "jotai";
+import { useState } from "react";
 
+import { krPortfolioRefreshAtom } from "@/features/smart-money/application/atoms/smartMoneyBootstrapAtom";
 import { useKrInvestors, useKrPortfolio } from "@/features/smart-money/application/hooks/useKrPortfolio";
 import type { KrInvestor, KrPortfolioItem, KrChangeType } from "@/features/smart-money/domain/model/krPortfolioItem";
-import { smartMoneyStyles as s } from "@/features/smart-money/ui/components/smartMoneyStyles";
 import { triggerCollectKrPortfolio } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
-import { krPortfolioRefreshAtom } from "@/features/smart-money/application/atoms/smartMoneyBootstrapAtom";
+import { smartMoneyStyles as s } from "@/features/smart-money/ui/components/smartMoneyStyles";
 
 const INVESTOR_TYPE_LABEL: Record<string, string> = {
   PENSION: "연기금",

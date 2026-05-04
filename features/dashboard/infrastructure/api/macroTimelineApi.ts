@@ -1,8 +1,8 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
-import { env } from "@/infrastructure/config/env";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
 import type { TimelineResponse } from "@/features/dashboard/domain/model/timelineEvent";
 import type { TimelineProgress } from "@/features/dashboard/domain/state/timelineState";
+import { env } from "@/infrastructure/config/env";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 export type MacroRegion = "US" | "KR" | "GLOBAL";
 export type MacroLookbackRange = "1M" | "3M" | "6M" | "1Y" | "2Y" | "5Y" | "10Y";

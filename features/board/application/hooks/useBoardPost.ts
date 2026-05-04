@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { fetchBoardPost, deleteBoardPost } from "@/features/board/infrastructure/api/boardApi";
+import { useEffect, useState } from "react";
+
 import type { BoardPostDetail } from "@/features/board/domain/model/boardPostDetail";
+import { fetchBoardPost, deleteBoardPost } from "@/features/board/infrastructure/api/boardApi";
 
 type PostState =
   | { status: "LOADING" }

@@ -1,5 +1,6 @@
-import { Suspense } from "react";
 import Link from "next/link";
+import { Suspense } from "react";
+
 import BoardList from "@/features/board/ui/components/BoardList";
 import { boardListStyles as s } from "@/features/board/ui/components/boardListStyles";
 

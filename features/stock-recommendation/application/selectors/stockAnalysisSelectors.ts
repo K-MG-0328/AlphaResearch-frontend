@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+
 import {
   stockAnalysisAtom,
 } from "@/features/stock-recommendation/application/atoms/stockAnalysisAtom";

@@ -1,19 +1,20 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
 import { useAtom, useAtomValue } from "jotai";
-import { selectedAnomalyBarAtom } from "@/features/dashboard/application/atoms/selectedAnomalyBarAtom";
-import { anomalyCausalityAtom } from "@/features/dashboard/application/atoms/anomalyCausalityAtom";
+import { useEffect, useMemo, useState } from "react";
+
 import { anomalyBarsAtom } from "@/features/dashboard/application/atoms/anomalyBarsAtom";
+import { anomalyCausalityAtom } from "@/features/dashboard/application/atoms/anomalyCausalityAtom";
+import { selectedAnomalyBarAtom } from "@/features/dashboard/application/atoms/selectedAnomalyBarAtom";
 import { useAnomalyCausality } from "@/features/dashboard/application/hooks/useAnomalyCausality";
-import LimitsInfoModal from "@/features/dashboard/ui/components/LimitsInfoModal";
-import type { AnomalyBar } from "@/features/dashboard/infrastructure/api/anomalyBarsApi";
 import type {
   HypothesisConfidence,
   HypothesisLayer,
   HypothesisResult,
   HypothesisSource,
 } from "@/features/dashboard/domain/model/timelineEvent";
+import type { AnomalyBar } from "@/features/dashboard/infrastructure/api/anomalyBarsApi";
+import LimitsInfoModal from "@/features/dashboard/ui/components/LimitsInfoModal";
 
 const CONFIDENCE_LABEL: Record<HypothesisConfidence, string> = {
   HIGH: "신뢰도 상",

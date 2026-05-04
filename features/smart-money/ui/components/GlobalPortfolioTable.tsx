@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+
 import { useGlobalInvestors, useGlobalPortfolio } from "@/features/smart-money/application/hooks/useGlobalPortfolio";
 import type { GlobalPortfolioItem } from "@/features/smart-money/domain/model/globalPortfolioItem";
-import InvestorSelector from "@/features/smart-money/ui/components/InvestorSelector";
 import ChangeTypeBadge from "@/features/smart-money/ui/components/ChangeTypeBadge";
+import InvestorSelector from "@/features/smart-money/ui/components/InvestorSelector";
 import { smartMoneyStyles as s } from "@/features/smart-money/ui/components/smartMoneyStyles";
 
 function formatMarketValue(value: number): string {

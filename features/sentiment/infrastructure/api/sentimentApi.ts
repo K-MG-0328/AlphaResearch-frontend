@@ -1,5 +1,3 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
 import type {
   SnsSignalResult,
   SnsPerPlatform,
@@ -8,6 +6,8 @@ import type {
   SnsSentimentLabel,
   SnsSourceTier,
 } from "@/features/sentiment/domain/model/snsSignal";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 // ── 요청 타입 ─────────────────────────────────────────────────────────────────
 

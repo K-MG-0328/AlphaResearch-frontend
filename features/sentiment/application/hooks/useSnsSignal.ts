@@ -2,6 +2,7 @@
 
 import { useAtom } from "jotai";
 import { useCallback } from "react";
+
 import { snsSignalAtom } from "@/features/sentiment/application/atoms/snsSignalAtom";
 import { sentimentApi } from "@/features/sentiment/infrastructure/api/sentimentApi";
 

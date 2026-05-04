@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+
 import NewsList from "@/features/news/ui/components/NewsList";
 import { newsListStyles as s } from "@/features/news/ui/components/newsListStyles";
 

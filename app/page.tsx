@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import MarketRiskPanel from "@/features/dashboard/ui/components/MarketRiskPanel";
 import SchedulePanel from "@/features/dashboard/ui/components/SchedulePanel";
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSyncExternalStore } from "react";
+
 import { navbarStyles } from "@/ui/components/navbar/navbarStyles";
 
 // SSR/CSR 일치 가드 — 서버 렌더 시 false / 클라이언트 hydration 후 true.

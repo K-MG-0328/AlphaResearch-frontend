@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+
 import { useBoardCreate } from "@/features/board/application/hooks/useBoardCreate";
 import { boardCreateStyles as s } from "@/features/board/ui/components/boardCreateStyles";
 

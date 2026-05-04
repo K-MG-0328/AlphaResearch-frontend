@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
 import { useSetAtom } from "jotai";
+import { useEffect } from "react";
+
 import { economicScheduleAtom } from "@/features/dashboard/application/atoms/economicScheduleAtom";
 import { fetchScheduleBoard } from "@/features/dashboard/infrastructure/api/scheduleApi";
 

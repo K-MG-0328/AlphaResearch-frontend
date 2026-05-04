@@ -1,5 +1,5 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
 import type { CompanyProfile } from "@/features/company-profile/domain/model/companyProfile";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 export async function fetchCompanyProfile(ticker: string): Promise<CompanyProfile> {
   const trimmed = ticker.trim();

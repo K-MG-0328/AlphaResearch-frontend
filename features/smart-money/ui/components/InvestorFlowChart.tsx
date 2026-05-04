@@ -10,6 +10,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+
 import { useInvestorFlowTrend } from "@/features/smart-money/application/hooks/useInvestorFlowTrend";
 import { smartMoneyStyles as s } from "@/features/smart-money/ui/components/smartMoneyStyles";
 

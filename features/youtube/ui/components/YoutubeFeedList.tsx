@@ -1,8 +1,8 @@
 "use client";
 
 import { useYoutubeFeed } from "@/features/youtube/application/hooks/useYoutubeFeed";
-import YoutubeCard from "@/features/youtube/ui/components/YoutubeCard";
 import WatchlistTagChips from "@/features/youtube/ui/components/WatchlistTagChips";
+import YoutubeCard from "@/features/youtube/ui/components/YoutubeCard";
 import { youtubeListStyles as s } from "@/features/youtube/ui/components/youtubeListStyles";
 
 export default function YoutubeFeedList() {

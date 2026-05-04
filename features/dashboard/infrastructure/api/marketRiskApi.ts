@@ -1,6 +1,6 @@
-import { httpClient } from "@/infrastructure/http/httpClient";
-import type { ApiResponse } from "@/infrastructure/http/apiResponse";
 import type { MarketRisk, MarketRiskStatus } from "@/features/dashboard/domain/model/marketRisk";
+import type { ApiResponse } from "@/infrastructure/http/apiResponse";
+import { httpClient } from "@/infrastructure/http/httpClient";
 
 interface MarketRiskApiResponse {
   status?: string;

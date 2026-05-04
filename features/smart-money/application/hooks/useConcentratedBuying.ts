@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
 import { useAtom, useAtomValue } from "jotai";
+import { useEffect } from "react";
+
 import { concentratedBuyingAtom } from "@/features/smart-money/application/atoms/concentratedBuyingAtom";
 import { investorFlowRefreshAtom } from "@/features/smart-money/application/atoms/smartMoneyBootstrapAtom";
-import { fetchConcentratedBuying } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
 import type { ConcentratedBuyingDays } from "@/features/smart-money/domain/model/concentratedBuyingItem";
+import { fetchConcentratedBuying } from "@/features/smart-money/infrastructure/api/smartMoneyApi";
 
 export function useConcentratedBuying(days: ConcentratedBuyingDays) {
   const [concentratedBuyingState, setConcentratedBuyingState] = useAtom(concentratedBuyingAtom);

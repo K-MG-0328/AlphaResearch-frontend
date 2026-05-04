@@ -1,6 +1,7 @@
 "use client";
 
 import { useAtomValue } from "jotai";
+
 import { marketRiskAtom } from "@/features/dashboard/application/atoms/marketRiskAtom";
 import { useMarketRisk } from "@/features/dashboard/application/hooks/useMarketRisk";
 import type { MarketRiskStatus } from "@/features/dashboard/domain/model/marketRisk";

@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
 import { authAtom } from "@/features/auth/application/atoms/authAtom";
+import { savedInterestArticleAtom } from "@/features/news/application/atoms/savedInterestArticleAtom";
 import {
   deleteBookmark,
   getSavedArticles,
   type SavedArticleItem,
 } from "@/features/news/infrastructure/api/newsApi";
-import { savedInterestArticleAtom } from "@/features/news/application/atoms/savedInterestArticleAtom";
 
 export type SavedArticlesViewState = {
   articles: SavedArticleItem[];
