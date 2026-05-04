@@ -17,9 +17,16 @@ const eslintConfig = defineConfig([
     rules: {
       // 언더스코어 prefix 인자/변수는 의도적으로 미사용 — 표준 컨벤션 채택.
       "@typescript-eslint/no-unused-vars": [
-        "warn",
+        "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" },
       ],
+      // 타입 import 일관성 — auto-fixable.
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        { prefer: "type-imports", fixStyle: "separate-type-imports" },
+      ],
+      // hook 의존성 누락은 silent regression 원인 — error 로 승격.
+      "react-hooks/exhaustive-deps": "error",
     },
   },
 ]);
