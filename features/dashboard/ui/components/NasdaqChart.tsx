@@ -15,16 +15,16 @@ import {
 } from "lightweight-charts";
 import { useEffect, useRef } from "react";
 
-import { anomalyBarsAtom } from "@/features/dashboard/application/atoms/anomalyBarsAtom";
-import { chartApiAtom, chartContainerAtom } from "@/features/dashboard/application/atoms/chartApiAtom";
-import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
-import { companyNameAtom } from "@/features/dashboard/application/atoms/companyNameAtom";
-import { markerVisibilityAtom } from "@/features/dashboard/application/atoms/markerVisibilityAtom";
-import { nasdaqAtom } from "@/features/dashboard/application/atoms/nasdaqAtom";
-import { selectedAnomalyBarAtom } from "@/features/dashboard/application/atoms/selectedAnomalyBarAtom";
-import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/selectedBarAtom";
-import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
-import { timelineAtom, selectedTimelineEventAtom } from "@/features/dashboard/application/atoms/timelineAtom";
+import { anomalyBarsAtom } from "@/features/dashboard/application/atoms/anomaly/anomalyBarsAtom";
+import { selectedAnomalyBarAtom } from "@/features/dashboard/application/atoms/anomaly/selectedAnomalyBarAtom";
+import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/anomaly/selectedBarAtom";
+import { chartApiAtom, chartContainerAtom } from "@/features/dashboard/application/atoms/chart/chartApiAtom";
+import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chart/chartIntervalAtom";
+import { companyNameAtom } from "@/features/dashboard/application/atoms/chart/companyNameAtom";
+import { markerVisibilityAtom } from "@/features/dashboard/application/atoms/chart/markerVisibilityAtom";
+import { nasdaqAtom } from "@/features/dashboard/application/atoms/chart/nasdaqAtom";
+import { tickerAtom } from "@/features/dashboard/application/atoms/chart/tickerAtom";
+import { timelineAtom, selectedTimelineEventAtom } from "@/features/dashboard/application/atoms/timeline/timelineAtom";
 import { useAnomalyBars } from "@/features/dashboard/application/hooks/useAnomalyBars";
 import { useNasdaqChart } from "@/features/dashboard/application/hooks/useNasdaqChart";
 import { useVisibleBarCount } from "@/features/dashboard/application/hooks/useVisibleBarCount";

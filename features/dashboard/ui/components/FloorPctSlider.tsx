@@ -7,7 +7,7 @@ import {
   FLOOR_PCT_MIN,
   FLOOR_PCT_MAX,
   FLOOR_PCT_STEP,
-} from "@/features/dashboard/application/atoms/floorPctOverrideAtom";
+} from "@/features/dashboard/application/atoms/chart/floorPctOverrideAtom";
 
 // KR7 — z-score floor 임계값 사용자 조정 슬라이더.
 // null = backend 기본 (KOSPI 5% / KOSDAQ 7% / US 5%) 사용.

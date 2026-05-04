@@ -5,7 +5,7 @@ import { useAtom } from "jotai";
 import {
   markerVisibilityAtom,
   type MarkerVisibility,
-} from "@/features/dashboard/application/atoms/markerVisibilityAtom";
+} from "@/features/dashboard/application/atoms/chart/markerVisibilityAtom";
 import type { AnomalyBarType } from "@/features/dashboard/infrastructure/api/anomalyBarsApi";
 
 // KR7 — 사용자 마커 토글 chips. 차트 위 row 에 배치.

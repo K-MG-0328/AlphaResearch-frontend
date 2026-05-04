@@ -3,7 +3,7 @@
 import { useSetAtom } from "jotai";
 import { useEffect } from "react";
 
-import { marketRiskAtom } from "@/features/dashboard/application/atoms/marketRiskAtom";
+import { marketRiskAtom } from "@/features/dashboard/application/atoms/timeline/marketRiskAtom";
 import { fetchMarketRisk } from "@/features/dashboard/infrastructure/api/marketRiskApi";
 
 export function useMarketRisk() {

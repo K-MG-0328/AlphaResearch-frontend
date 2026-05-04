@@ -3,9 +3,9 @@
 import { useAtom, useAtomValue } from "jotai";
 import { useEffect, useMemo, useState } from "react";
 
-import { anomalyBarsAtom } from "@/features/dashboard/application/atoms/anomalyBarsAtom";
-import { anomalyCausalityAtom } from "@/features/dashboard/application/atoms/anomalyCausalityAtom";
-import { selectedAnomalyBarAtom } from "@/features/dashboard/application/atoms/selectedAnomalyBarAtom";
+import { anomalyBarsAtom } from "@/features/dashboard/application/atoms/anomaly/anomalyBarsAtom";
+import { anomalyCausalityAtom } from "@/features/dashboard/application/atoms/anomaly/anomalyCausalityAtom";
+import { selectedAnomalyBarAtom } from "@/features/dashboard/application/atoms/anomaly/selectedAnomalyBarAtom";
 import { useAnomalyCausality } from "@/features/dashboard/application/hooks/useAnomalyCausality";
 import type {
   HypothesisConfidence,

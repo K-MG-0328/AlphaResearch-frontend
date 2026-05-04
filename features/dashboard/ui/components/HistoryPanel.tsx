@@ -3,12 +3,12 @@
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
-import { resetExpandedTimelineEventsAtom } from "@/features/dashboard/application/atoms/expandedTimelineAtom";
-import { nasdaqAtom } from "@/features/dashboard/application/atoms/nasdaqAtom";
-import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/selectedBarAtom";
-import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
-import { timelineAtom, selectedTimelineEventAtom } from "@/features/dashboard/application/atoms/timelineAtom";
+import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/anomaly/selectedBarAtom";
+import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chart/chartIntervalAtom";
+import { nasdaqAtom } from "@/features/dashboard/application/atoms/chart/nasdaqAtom";
+import { tickerAtom } from "@/features/dashboard/application/atoms/chart/tickerAtom";
+import { resetExpandedTimelineEventsAtom } from "@/features/dashboard/application/atoms/timeline/expandedTimelineAtom";
+import { timelineAtom, selectedTimelineEventAtom } from "@/features/dashboard/application/atoms/timeline/timelineAtom";
 import { useLazyTitles } from "@/features/dashboard/application/hooks/useLazyTitles";
 import { useTimeline } from "@/features/dashboard/application/hooks/useTimeline";
 import type { TimelineEvent } from "@/features/dashboard/domain/model/timelineEvent";

@@ -3,7 +3,7 @@
 import { useSetAtom } from "jotai";
 import { useEffect } from "react";
 
-import { economicScheduleAtom } from "@/features/dashboard/application/atoms/economicScheduleAtom";
+import { economicScheduleAtom } from "@/features/dashboard/application/atoms/timeline/economicScheduleAtom";
 import { fetchScheduleBoard } from "@/features/dashboard/infrastructure/api/scheduleApi";
 
 export function useEconomicSchedule() {

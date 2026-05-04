@@ -3,7 +3,7 @@
 import { useAtom } from "jotai";
 import { useState } from "react";
 
-import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
+import { tickerAtom } from "@/features/dashboard/application/atoms/chart/tickerAtom";
 
 export default function StockSearch() {
   const [query, setQuery] = useState("");
