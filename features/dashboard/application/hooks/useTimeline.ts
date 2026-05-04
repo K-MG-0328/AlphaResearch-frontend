@@ -3,9 +3,9 @@
 import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect } from "react";
 
-import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
-import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
-import { timelineAtom } from "@/features/dashboard/application/atoms/timelineAtom";
+import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chart/chartIntervalAtom";
+import { tickerAtom } from "@/features/dashboard/application/atoms/chart/tickerAtom";
+import { timelineAtom } from "@/features/dashboard/application/atoms/timeline/timelineAtom";
 import { streamTimeline } from "@/features/dashboard/infrastructure/api/timelineApi";
 
 export function useTimeline() {

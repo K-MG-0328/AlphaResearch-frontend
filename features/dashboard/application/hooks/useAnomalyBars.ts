@@ -3,10 +3,10 @@
 import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect } from "react";
 
-import { anomalyBarsAtom } from "@/features/dashboard/application/atoms/anomalyBarsAtom";
-import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
-import { floorPctOverrideAtom } from "@/features/dashboard/application/atoms/floorPctOverrideAtom";
-import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
+import { anomalyBarsAtom } from "@/features/dashboard/application/atoms/anomaly/anomalyBarsAtom";
+import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chart/chartIntervalAtom";
+import { floorPctOverrideAtom } from "@/features/dashboard/application/atoms/chart/floorPctOverrideAtom";
+import { tickerAtom } from "@/features/dashboard/application/atoms/chart/tickerAtom";
 import { useDebouncedValue } from "@/features/dashboard/application/hooks/useDebouncedValue";
 import { fetchAnomalyBars } from "@/features/dashboard/infrastructure/api/anomalyBarsApi";
 

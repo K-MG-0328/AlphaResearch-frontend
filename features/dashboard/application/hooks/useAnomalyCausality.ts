@@ -3,8 +3,8 @@
 import { useAtomValue, useSetAtom } from "jotai";
 import { useEffect } from "react";
 
-import { anomalyCausalityAtom } from "@/features/dashboard/application/atoms/anomalyCausalityAtom";
-import { selectedAnomalyBarAtom } from "@/features/dashboard/application/atoms/selectedAnomalyBarAtom";
+import { anomalyCausalityAtom } from "@/features/dashboard/application/atoms/anomaly/anomalyCausalityAtom";
+import { selectedAnomalyBarAtom } from "@/features/dashboard/application/atoms/anomaly/selectedAnomalyBarAtom";
 import { fetchAnomalyCausality } from "@/features/dashboard/infrastructure/api/anomalyCausalityApi";
 
 export function useAnomalyCausality() {

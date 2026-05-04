@@ -4,11 +4,11 @@ import { useAtomValue } from "jotai";
 import type { Time } from "lightweight-charts";
 import { useEffect, useRef, useState, useCallback, type RefObject } from "react";
 
-import { chartApiAtom, chartContainerAtom } from "@/features/dashboard/application/atoms/chartApiAtom";
-import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
-import { expandedTimelineEventsAtom } from "@/features/dashboard/application/atoms/expandedTimelineAtom";
-import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/selectedBarAtom";
-import { selectedTimelineEventAtom } from "@/features/dashboard/application/atoms/timelineAtom";
+import { selectedBarTimeAtom } from "@/features/dashboard/application/atoms/anomaly/selectedBarAtom";
+import { chartApiAtom, chartContainerAtom } from "@/features/dashboard/application/atoms/chart/chartApiAtom";
+import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chart/chartIntervalAtom";
+import { expandedTimelineEventsAtom } from "@/features/dashboard/application/atoms/timeline/expandedTimelineAtom";
+import { selectedTimelineEventAtom } from "@/features/dashboard/application/atoms/timeline/timelineAtom";
 
 
 interface Line {

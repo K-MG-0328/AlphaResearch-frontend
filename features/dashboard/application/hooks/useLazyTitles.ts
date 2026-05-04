@@ -3,7 +3,7 @@
 import { useStore } from "jotai";
 import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
 
-import { titleOverrideAtomFamily, titleLoadingAtomFamily } from "@/features/dashboard/application/atoms/lazyTitleAtoms";
+import { titleOverrideAtomFamily, titleLoadingAtomFamily } from "@/features/dashboard/application/atoms/timeline/lazyTitleAtoms";
 import type { TimelineEvent } from "@/features/dashboard/domain/model/timelineEvent";
 import { fetchEventTitles } from "@/features/dashboard/infrastructure/api/lazyTitleApi";
 

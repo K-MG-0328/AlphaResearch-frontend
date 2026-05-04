@@ -5,7 +5,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import {
   expandedTimelineEventsAtom,
   toggleExpandedTimelineEventAtom,
-} from "@/features/dashboard/application/atoms/expandedTimelineAtom";
+} from "@/features/dashboard/application/atoms/timeline/expandedTimelineAtom";
 import type { TimelineEvent, TimelineCategory } from "@/features/dashboard/domain/model/timelineEvent";
 import {
   getTimelineColor,

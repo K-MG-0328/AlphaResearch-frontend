@@ -3,11 +3,11 @@
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useEffect } from "react";
 
-import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chartIntervalAtom";
-import { companyNameAtom } from "@/features/dashboard/application/atoms/companyNameAtom";
-import { dashboardAtom } from "@/features/dashboard/application/atoms/dashboardAtom";
-import { nasdaqAtom } from "@/features/dashboard/application/atoms/nasdaqAtom";
-import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
+import { chartIntervalAtom } from "@/features/dashboard/application/atoms/chart/chartIntervalAtom";
+import { companyNameAtom } from "@/features/dashboard/application/atoms/chart/companyNameAtom";
+import { dashboardAtom } from "@/features/dashboard/application/atoms/chart/dashboardAtom";
+import { nasdaqAtom } from "@/features/dashboard/application/atoms/chart/nasdaqAtom";
+import { tickerAtom } from "@/features/dashboard/application/atoms/chart/tickerAtom";
 import { fetchStockBars } from "@/features/dashboard/infrastructure/api/stockBarsApi";
 import { HttpError } from "@/infrastructure/http/httpClient";
 

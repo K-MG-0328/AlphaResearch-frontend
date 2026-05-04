@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 import { assetProfileAtom } from "@/features/company-profile/application/atoms/assetProfileAtom";
 import { fetchCompanyProfile } from "@/features/company-profile/infrastructure/api/companyProfileApi";
-import { tickerAtom } from "@/features/dashboard/application/atoms/tickerAtom";
+import { tickerAtom } from "@/features/dashboard/application/atoms/chart/tickerAtom";
 import { HttpError } from "@/infrastructure/http/httpClient";
 
 const FALLBACK_TICKER = "NVDA";
