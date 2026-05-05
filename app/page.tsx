@@ -67,19 +67,13 @@ export default function Home() {
             <SchedulePanel />
           </div>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-10 flex justify-center">
             <Link
               href="/stock-recommendation"
               className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-7 py-3.5 text-base font-semibold text-white shadow-md hover:bg-blue-700 transition-colors"
             >
               지금 분석하기
               <span>→</span>
-            </Link>
-            <Link
-              href="/board"
-              className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 bg-white px-7 py-3.5 text-base font-semibold text-zinc-700 hover:bg-zinc-50 transition-colors dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
-            >
-              커뮤니티 보기
             </Link>
           </div>
 
