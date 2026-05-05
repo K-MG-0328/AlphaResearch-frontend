@@ -3,7 +3,7 @@ version: "3.9"
 services:
   nextjs-app:
     image: ghcr.io/${REPO_USER}/multi-agent-ui:latest
-    container_name: multi-agent-ui
+    container_name: alpharesearch_nextjs
     env_file:
       - .env
     restart: unless-stopped
@@ -12,10 +12,10 @@ services:
 
   nginx:
     image: nginx:stable
-    container_name: nginx
+    container_name: alpharesearch_nginx
     restart: unless-stopped
     ports:
-      - "37333:80"  # 외부에서 접속할 포트
+      - "${NGINX_HOST_PORT:-37333}:80"  # 외부에서 접속할 포트
     volumes:
       - ./conf:/etc/nginx/conf.d:ro
     depends_on:
