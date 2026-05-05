@@ -17,13 +17,13 @@ export function redirectOAuthLogin(provider: OAuthProvider): void {
 }
 
 export async function fetchAuthMe(): Promise<AuthMeResponse> {
-  const response = await fetch(`${env.apiBaseUrl}/authentication/me`, {
+  const response = await fetch(`${env.apiBaseUrl}/api/v1/auth/me`, {
     method: "GET",
     credentials: "include",
   });
 
   if (!response.ok) {
-    throw new Error(`/authentication/me 요청 실패: ${response.status}`);
+    throw new Error(`/api/v1/auth/me 요청 실패: ${response.status}`);
   }
 
   return response.json() as Promise<AuthMeResponse>;
