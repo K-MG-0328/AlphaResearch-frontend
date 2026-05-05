@@ -14,10 +14,6 @@ const getMountedServer = () => false;
 
 const menuItems = [
   { label: "Home", href: "/" },
-  { label: "Board", href: "/board" },
-  { label: "Youtube", href: "/youtube" },
-  { label: "뉴스", href: "/news" },
-  { label: "저장된 기사", href: "/news/saved", requiresAuth: true },
   { label: "관심종목 관리", href: "/settings/watchlist", requiresAuth: true },
   { label: "종목 분석", href: "/stock-recommendation" },
   { label: "히스토리", href: "/dashboard" },
