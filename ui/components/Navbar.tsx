@@ -42,7 +42,7 @@ export default function Navbar({ isAuthenticated = false, onLogout }: NavbarProp
     <nav className={navbarStyles.nav}>
       <div className={navbarStyles.inner}>
         <Link href="/" className={navbarStyles.logo}>
-          Antelligen
+          AlphaResearch
         </Link>
         <div className={navbarStyles.menuList}>
           {menuItems.map((item) => {

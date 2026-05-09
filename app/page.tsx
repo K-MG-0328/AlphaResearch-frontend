@@ -45,7 +45,7 @@ export default function Home() {
           {/* 팀 배지 */}
           <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:border-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
             <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
-            Antelligen
+            AlphaResearch
           </span>
 
           <h1 className="mt-6 text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-6xl">
@@ -173,7 +173,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-zinc-200 dark:border-zinc-800">
         <div className="mx-auto max-w-5xl px-6 py-8 text-center text-sm text-zinc-400 dark:text-zinc-500">
-          © 2026 Antelligen — AI 멀티 에이전트 주식 분석 서비스
+          © 2026 AlphaResearch — AI 멀티 에이전트 주식 분석 서비스
         </div>
       </footer>
     </div>
