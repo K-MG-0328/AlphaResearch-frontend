@@ -12,7 +12,7 @@ const TERMS_OF_SERVICE_SECTIONS: TermSection[] = [
   {
     title: "제 1 조 (목적)",
     content: [
-      "본 약관은 Antelligen(이하 '서비스')가 제공하는 주식 정보 서비스의 이용 조건 및 절차를 규정함을 목적으로 합니다.",
+      "본 약관은 AlphaResearch(이하 '서비스')가 제공하는 주식 정보 서비스의 이용 조건 및 절차를 규정함을 목적으로 합니다.",
     ],
   },
   {
